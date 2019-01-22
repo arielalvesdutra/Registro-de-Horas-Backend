@@ -1,38 +1,19 @@
 <?php
 
-echo '<p>Primeiro trecho de código!</p>';
+require 'bootstrap.php';
 
-$date1 = new DateTime('2019/01/20 13:50:00');
-$date2 = new DateTime('2019/01/22 14:55:00');
-$dateDiff = $date1->diff($date2);
+use Slim\App;
 
-$startDate = strtotime('2019/01/20 13:50:00');
-$endDate = strtotime('2019/01/22 14:55:00');
-$difference = abs($endDate - $startDate)/3600;
+$app = new App([
+    'settings' => [
+        'displayErrorDetails' => true,
+        'debug'               => true,
+        'determineRouteBeforeAppMiddleware' => true
+    ]
+]);
 
+$app->get('/', function(){
+   echo "Iniciando a aplciação Backend de Registro de horas...";
+});
 
-
-?>
-
-<ul>
-
-    <li>
-<!--        --><?php //var_dump($dateDiff); ?>
-        <?php echo $dateDiff->format('%H:%I:%S'); ?>
-    </li>
-    <li>
-        <?php echo $date1->format('H:i:s'); ?>
-    </li>
-    <li>
-        <?php echo $date2->format('H:i:s'); ?>
-    </li>
-
-    <li>
-        <?php echo $difference; ?>
-    </li>
-
-</ul>
-
-<p>
-    Vou ter que criar as classes para calcular a diferênça entre horas...
-</p>
+$app->run();
