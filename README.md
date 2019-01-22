@@ -1,6 +1,6 @@
 ## Instalar PHP 7.3 no Ubuntu 16.04
 
-- Executar no terminal
+- Executar no terminal:
     - `sudo add-apt-repository ppa:ondrej/php`
     - `sudo apt update`
     - `sudo apt install php7.3`
