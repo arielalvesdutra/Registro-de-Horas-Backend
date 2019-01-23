@@ -6,3 +6,9 @@ services:
     - 8000:80
     volumes:
     - ../:/var/www/html
+  mysql:
+    image: 'mysql:5.7'
+    ports:
+      - 3600:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: exemplo
