@@ -3,7 +3,7 @@
 - Executar no terminal:
     - `sudo add-apt-repository ppa:ondrej/php`
     - `sudo apt update`
-    - `sudo apt install php7.3`
+    - `sudo apt install php7.3 php7.3-mysql`
 
 ## Instalar composer no Ubuntu 16.04
 
@@ -15,5 +15,6 @@
     - `php -r "unlink('composer-setup.php');"`
     - `chmod +x composer.phar`
     - `sudo mv composer.phar /usr/local/bin/composer`
+
 
     
