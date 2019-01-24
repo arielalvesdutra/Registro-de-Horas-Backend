@@ -2,14 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Repositories;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class TimeRecorder extends Controller {
 
-    public function addRecord()
+    public function addRecord(ServerRequestInterface $request)
     {
-        echo "addRecord()";
+        $parameters = $request->getParsedBody();
+
+        Repositories\TimeRecorder::addTimeRecord($parameters);
     }
 
     public function deleteRecord()
