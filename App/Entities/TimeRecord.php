@@ -13,9 +13,10 @@ class TimeRecord extends Entity
 
     protected $duration;
 
-    public function setTitle(string $title): void
+    public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
     }
 
     public function getTitle(): string
@@ -23,9 +24,10 @@ class TimeRecord extends Entity
         return $this->title;
     }
 
-    public function setInitTime(string $initTime): void
+    public function setInitTime(string $initTime)
     {
         $this->initTime = $initTime;
+        return $this;
     }
 
     public function getInitTime(): string
@@ -33,9 +35,10 @@ class TimeRecord extends Entity
         return $this->initTime;
     }
 
-    public function setEndTime(string $endTime): void
+    public function setEndTime(string $endTime)
     {
         $this->endTime = $endTime;
+        return $this;
     }
 
     public function getEndTime(): string
@@ -43,9 +46,10 @@ class TimeRecord extends Entity
         return $this->endTime;
     }
 
-    public function setDuration(string $duration): void
+    public function setDuration(string $duration)
     {
         $this->duration = $duration;
+        return $this;
     }
 
     public function getDuration(): string
