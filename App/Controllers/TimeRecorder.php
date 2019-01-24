@@ -22,7 +22,7 @@ class TimeRecorder extends Controller {
 
     public function getRecords()
     {
-        echo "getRecords()";
+        Repositories\TimeRecorder::getTimeRecords();
     }
 
     public function updateRecord(ServerRequestInterface $request)
