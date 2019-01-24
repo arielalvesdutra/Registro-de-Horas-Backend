@@ -25,6 +25,7 @@ $app->get('/', function(){
  * Controller
  */
 $app->get('/info', Controller::class. ':info');
+$app->get('/json', Controller::class. ':testJsonResponse');
 $app->get('/test', Controller::class. ':test');
 $app->get('/testDatabaseConnection', Controller::class. ':testDatabaseConnection');
 

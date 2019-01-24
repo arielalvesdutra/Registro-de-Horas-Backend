@@ -27,6 +27,7 @@ class TimeRecorder extends Repository
     public static function getTimeRecords()
     {
         $records = Models\TimeRecord::all();
-        return Utils\Json::convertArrayToJson($records);
+
+        return $records;
     }
 }
