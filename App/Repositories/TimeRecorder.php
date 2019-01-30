@@ -24,6 +24,12 @@ class TimeRecorder extends Repository
         Models\TimeRecord::save($timeRecord);
     }
 
+    public static function deleteRecord(int $id)
+    {
+        Models\TimeRecord::delete($id);
+    }
+
+
     public static function getTimeRecords()
     {
         $records = Models\TimeRecord::all();
