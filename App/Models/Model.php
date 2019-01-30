@@ -18,4 +18,14 @@ abstract class Model {
 
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public static function delete(int $id)
+    {
+        $object = new static();
+        $pdo = Database::connect();
+
+        $query = $pdo->prepare("DELETE FROM ". $object->table . " WHERE id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+    }
 }
