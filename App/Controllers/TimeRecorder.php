@@ -20,11 +20,11 @@ class TimeRecorder extends Controller {
         echo "deleteRecord()";
     }
 
-    public function getRecords(ServerRequestInterface $request,ResponseInterface $response)
+    public function getRecords(ServerRequestInterface $request, ResponseInterface $response)
     {
         $records  = Repositories\TimeRecorder::getTimeRecords();
-
-        return $response->withJson($records, 302);
+        
+        return $response->withJson($records);
     }
 
     public function updateRecord(ServerRequestInterface $request)
