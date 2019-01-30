@@ -15,15 +15,17 @@ class TimeRecorder extends Controller {
         Repositories\TimeRecorder::addTimeRecord($parameters);
     }
 
-    public function deleteRecord()
+    public function deleteRecord(ServerRequestInterface $request)
     {
-        echo "deleteRecord()";
+        $id = $request->getAttribute('id');
+
+        Repositories\TimeRecorder::deleteRecord($id);
     }
 
     public function getRecords(ServerRequestInterface $request, ResponseInterface $response)
     {
         $records  = Repositories\TimeRecorder::getTimeRecords();
-        
+
         return $response->withJson($records);
     }
 
