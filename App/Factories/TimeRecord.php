@@ -7,9 +7,9 @@ use App\Entities;
 class TimeRecord extends Factory
 {
 
-    public static function create($parameters = [])
+    public static function create($parameters = []): Entities\TimeRecord
     {
-        $timeRecord = (new Entities\TimeRecord())
+        $timeRecord = (new Entities\TimeRecord($parameters))
             ->setTitle($parameters['title'])
             ->setInitTime($parameters['initDate'])
             ->setEndTime($parameters['endDate']);
