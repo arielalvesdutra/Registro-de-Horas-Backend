@@ -43,6 +43,7 @@ $app->get('/testDatabaseConnection', Controller::class. ':testDatabaseConnection
  */
 $app->delete('/deleteRecord/{id}', TimeRecorder::class . ':deleteRecord');
 $app->get('/getRecords', TimeRecorder::class . ':getRecords');
+$app->get('/getRecords/{filters}', TimeRecorder::class . ':getRecordsByFilters');
 $app->post('/addRecord', TimeRecorder::class . ':addRecord');
 $app->put('/updateRecord/{id}', TimeRecorder::class . ':updateRecord');
 
