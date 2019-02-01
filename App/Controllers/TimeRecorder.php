@@ -19,7 +19,7 @@ class TimeRecorder extends Controller {
     {
         $id = $request->getAttribute('id');
 
-        Repositories\TimeRecorder::deleteRecord($id);
+        Repositories\TimeRecorder::deleteTimeRecord($id);
     }
 
     public function getRecords(ServerRequestInterface $request, ResponseInterface $response)
@@ -29,8 +29,29 @@ class TimeRecorder extends Controller {
         return $response->withJson($records);
     }
 
+    public function getRecordsByInitDate(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $date = $request->getAttribute('date');
+
+        $records = Repositories\TimeRecorder::getTimeRecordsByInitDate($date);
+
+        return $response->withJson($records);
+    }
+
+    public function getRecordsByFilters(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $queryParams = $request->getQueryParams();
+
+        $records = Repositories\TimeRecorder::getTimeRecordsByFilters($queryParams);
+
+        return $response->withJson($records);
+    }
+
+
     public function updateRecord(ServerRequestInterface $request)
     {
-        echo "updateRecord()";
+        $parameters = $request->getParsedBody();
+
+        Repositories\TimeRecorder::updateTimeRecord($parameters);
     }
 }
