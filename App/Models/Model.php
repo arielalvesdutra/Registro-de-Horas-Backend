@@ -12,8 +12,8 @@ abstract class Model {
     {
         $object = new static();
         $pdo = Database::connect();
-
-        $query = $pdo->prepare("SELECT * FROM ". $object->table);
+        //TODO: remover a ordenzação específica da Models\Model e colocar no Models\TimeRecord
+        $query = $pdo->prepare("SELECT * FROM ". $object->table . " order by endDate desc");
         $query->execute();
 
         return $query->fetchAll(\PDO::FETCH_ASSOC);
