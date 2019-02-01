@@ -12,6 +12,11 @@ class TimeRecorderService
         return $this->subtractDateTime($timeRecord->getInitTime(), $timeRecord->getEndTime());
     }
 
+    public static function formatDate(string $date): string
+    {
+        return date_format(new \DateTime($date), 'Y/m/d');
+    }
+
     private function subtractDateTime(string $initDate, string $endDate)
     {
         $date1 = new \DateTime($initDate);
@@ -42,7 +47,5 @@ class TimeRecorderService
     {
         return $dateInterval->days * 24;
     }
-
-
 }
 
