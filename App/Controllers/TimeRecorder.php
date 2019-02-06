@@ -75,6 +75,8 @@ class TimeRecorder extends Controller {
 
     /**
      * @param ServerRequestInterface $request
+     *
+     * @throws \Exception
      */
     public function updateRecord(ServerRequestInterface $request)
     {
