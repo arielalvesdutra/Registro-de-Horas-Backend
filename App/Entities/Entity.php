@@ -4,6 +4,9 @@ namespace App\Entities;
 
 abstract class Entity implements IEntity
 {
+    /**
+     * @var int
+     */
     private $id;
 
     public function __construct($parameters = [])
@@ -13,11 +16,17 @@ abstract class Entity implements IEntity
         }
     }
 
+    /**
+     * @param int $id
+     */
     protected function setId(int $id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return int
+     */
     public function getId() : int
     {
         return $this->id;
