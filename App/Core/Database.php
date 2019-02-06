@@ -11,7 +11,7 @@ namespace App\Core;
 class Database
 {
     /** @var string host de conexão com o banco*/
-    private $host = "192.168.11.100";
+    private $host = "192.168.11.103";
 
     /** @var string base de dados de conexão com o banco */
     private $database = "registro-horas";
@@ -39,8 +39,9 @@ class Database
                 $object->user,
                 $object->password
             );
-        } catch (PDOException $e) {
-            echo 'Ocorreu um erro ao se conectar com o banco da dados! <br> ERROR: ' . $e->getMessage();
+        } catch (\Exception $e) {
+            die('<h2>Ocorreu um erro ao se conectar com o banco da dados!</h2>
+                   <p> <b>ERRO</b>: <i>' . $e->getMessage() . '</i></p>');
         }
 
         return $pdo;
