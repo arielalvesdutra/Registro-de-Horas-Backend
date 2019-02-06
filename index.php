@@ -2,15 +2,14 @@
 
 require 'bootstrap.php';
 
-use App\Controllers\Controller;
+use App\Controllers\Test;
 use App\Controllers\TimeRecorder;
 use Slim\App;
 
 $app = new App([
     'settings' => [
         'displayErrorDetails' => true,
-        'debug'               => true,
-        'determineRouteBeforeAppMiddleware' => true
+        'debug'               => true
     ]
 ]);
 
@@ -30,20 +29,19 @@ $app->get('/', function(){
 });
 
 /**
- * Controller
+ * Test
  */
-$app->get('/info', Controller::class. ':info');
-$app->get('/json', Controller::class. ':testJsonResponse');
-$app->get('/test', Controller::class. ':test');
-$app->get('/testDatabaseConnection', Controller::class. ':testDatabaseConnection');
-
+$app->get('/info', Test::class. ':info');
+$app->get('/json', Test::class. ':testJsonResponse');
+$app->get('/test', Test::class. ':test');
+$app->get('/testDatabaseConnection', Test::class. ':testDatabaseConnection');
 
 /**
  * Time Recorder
  */
 $app->delete('/deleteRecord/{id}', TimeRecorder::class . ':deleteRecord');
 $app->get('/getRecords', TimeRecorder::class . ':getRecords');
-$app->get('/getRecords/{filters}', TimeRecorder::class . ':getRecordsByFilters');
+$app->get('/getRecords/{filters}', TimeRecorder::class . ':getRecords');
 $app->post('/addRecord', TimeRecorder::class . ':addRecord');
 $app->put('/updateRecord/{id}', TimeRecorder::class . ':updateRecord');
 
