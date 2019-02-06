@@ -5,7 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 /**
  * Método de Depuração
  */
-function printr()
+function debug()
 {
     $arguments = func_get_args();
     echo '<pre>';
@@ -24,7 +24,7 @@ function printr()
 /**
  * Método de Depuração que encerra execução do código
  */
-function printrx()
+function debugx()
 {
     $arguments = func_get_args();
     echo '<pre>';
