@@ -3,24 +3,23 @@
 namespace App\Repositories;
 
 use App\Factories;
-
 use App\Models\TimeRecord;
-
 use App\Services\TimeRecorderService;
 
+/**
+ * Class TimeRecorder
+ * @package App\Repositories
+ *
+ * @property TimeRecorderService $service
+ * @property TimeRecord $model
+ */
 class TimeRecorder extends Repository
 {
-
-    public function __construct(TimeRecord $model, TimeRecorderService $service)
-    {
-        $this->model = $model;
-        $this->service = $service;
-    }
 
     /**
      * @param array $parameters
      *
-     * @return string
+     * @throws \Exception
      */
     public function addTimeRecord($parameters = [])
     {
@@ -47,33 +46,32 @@ class TimeRecorder extends Repository
     /**
      * @param array $parameters
      *
-     * @return array|string
+     * @return array
+     *
+     * @throws \Exception
      */
     public function getTimeRecords($parameters = [])
     {
-        try {
 
-            $this->service->validateTimeRecordParameters($parameters);
+        $this->service->validateTimeRecordParameters($parameters);
 
-            $formattedParameters = $this->service->formatParameters($parameters);
+        $formattedParameters = $this->service->formatTimeRecordParameters($parameters);
 
-            $this->model->setOrder($formattedParameters['order']);
+        $this->model->setOrderBy($formattedParameters['order']);
 
-            if($formattedParameters['filters']) {
-                foreach ($formattedParameters['filters'] as $key => $filter) {
-                    $this->model->addFilter($key, $filter);
-                }
+        if($formattedParameters['filters']) {
+            foreach ($formattedParameters['filters'] as $key => $filter) {
+                $this->model->addFilter($key, $filter);
             }
-
-            return $this->model->find();
-
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
         }
+
+        return $this->model->find();
     }
 
     /**
      * @param array $parameters
+     *
+     * @throws \Exception
      */
     public function updateTimeRecord($parameters = [])
     {
