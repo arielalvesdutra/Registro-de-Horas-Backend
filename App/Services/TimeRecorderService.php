@@ -4,6 +4,10 @@ namespace App\Services;
 
 use App\Entities;
 
+/**
+ * Class TimeRecorderService
+ * @package App\Services
+ */
 class TimeRecorderService extends Service
 {
 
@@ -20,23 +24,14 @@ class TimeRecorderService extends Service
     }
 
     /**
-     * @param string $date
+     * Formata os parâmetros de registro de tempo para poderem ser
+     * adicionados filtros ou ordenação na model TimeRecord
      *
-     * @return string
-     *
-     * @throws \Exception
-     */
-    public static function formatDate(string $date): string
-    {
-        return date_format(new \DateTime($date), 'Y/m/d');
-    }
-
-    /**
      * @param array $parameters
      *
-     * @return array
+     * @return array com os parametros formatados
      */
-    public function formatParameters(array $parameters): array
+    public function formatTimeRecordParameters(array $parameters): array
     {
         $formattedParameters = [];
 
@@ -80,6 +75,38 @@ class TimeRecorderService extends Service
         if ($parameters['order'] && !$this->isValidOrder($parameters['order'])) {
             throw new \Exception('Campo de ordenação inválido!');
         }
+    }
+
+    /**
+     * @param \DateInterval $dateInterval
+     *
+     * @return int
+     */
+    private function getHours(\DateInterval $dateInterval)
+    {
+        return $dateInterval->h;
+    }
+
+    /**
+     * @param \DateInterval $dateInterval
+     *
+     * @return float|int
+     */
+    private function getHoursFromDateInterval(\DateInterval $dateInterval)
+    {
+        $totalHours = $this->getHours($dateInterval) + $this->getHoursFromDays($dateInterval);
+
+        return $totalHours;
+    }
+
+    /**
+     * @param \DateInterval $dateInterval
+     *
+     * @return float|int
+     */
+    private function getHoursFromDays(\DateInterval $dateInterval)
+    {
+        return $dateInterval->days * 24;
     }
 
     /**
@@ -129,8 +156,11 @@ class TimeRecorderService extends Service
     }
 
     /**
-     * @param string $initDate
-     * @param string $endDate
+     * Subtrai a data/hora final pela data/hora inicial e retorna a
+     * duração em horas da diferença entra elas
+     *
+     * @param string $initDate yyyy/mm/dd hh:ii:ss
+     * @param string $endDate  yyyy/mm/dd hh:ii:ss
      *
      * @return string
      *
@@ -148,38 +178,6 @@ class TimeRecorderService extends Service
         $formattedDate = ("$hours:$minutesSeconds");
 
         return $formattedDate;
-    }
-
-    /**
-     * @param \DateInterval $dateInterval
-     *
-     * @return float|int
-     */
-    private function getHoursFromDateInterval(\DateInterval $dateInterval)
-    {
-        $totalHours = $this->getHours($dateInterval) + $this->getHoursFromDays($dateInterval);
-
-        return $totalHours;
-    }
-
-    /**
-     * @param \DateInterval $dateInterval
-     *
-     * @return int
-     */
-    private function getHours(\DateInterval $dateInterval)
-    {
-        return $dateInterval->h;
-    }
-
-    /**
-     * @param \DateInterval $dateInterval
-     *
-     * @return float|int
-     */
-    private function getHoursFromDays(\DateInterval $dateInterval)
-    {
-        return $dateInterval->days * 24;
     }
 }
 
