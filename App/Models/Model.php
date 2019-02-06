@@ -8,22 +8,30 @@ abstract class Model implements IModel
 {
 
     /**
-     * @var Ordenação das consultas
+     * Ordenação das consultas
+     *
+     * @var string
      */
-    protected $order;
+    protected $orderBy;
 
     /**
-     * @var array Filtros da consultas
+     * Filtros da consultas
+     *
+     * @var array
      */
     protected $filters = [];
 
     /**
-     * @var Nome da tabela
+     * Nome da tabela
+     *
+     * @var string
      */
     protected $tableName;
 
     /**
-     * @var Objeto PDO para comunicação com o banco de dados
+     * Objeto PDO para comunicação com o banco de dados
+     *
+     * @var \PDO
      */
     protected $pdo;
 
@@ -65,7 +73,7 @@ abstract class Model implements IModel
     /**
      * @return array
      */
-    public function find()
+    public function find(): array
     {
         $query = $this->getPdo()->prepare($this->buildFindQuery());
 
@@ -93,9 +101,9 @@ abstract class Model implements IModel
     /**
      * @return string
      */
-    public function getOrder(): string
+    public function getOrderBy(): string
     {
-        return $this->order;
+        return $this->orderBy;
     }
 
     /**
@@ -115,11 +123,11 @@ abstract class Model implements IModel
     }
 
     /**
-     * @param string $order
+     * @param string $orderBy
      */
-    public function setOrder(string $order):void
+    public function setOrderBy(string $orderBy):void
     {
-        $this->order = $order;
+        $this->orderBy = $orderBy;
     }
 
     /**
@@ -149,8 +157,8 @@ abstract class Model implements IModel
             }
         }
 
-        if ($this->getOrder()) {
-            $query .= ' ORDER BY ' . $this->getOrder();
+        if ($this->getOrderBy()) {
+            $query .= ' ORDER BY ' . $this->getOrderBy();
         }
 
         return $query;

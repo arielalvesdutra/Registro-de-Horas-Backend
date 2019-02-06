@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use App\Core\Database;
 use App\Entities;
 
 class TimeRecord extends Model
 {
 
+    /**
+     * Nome da tabela
+     *
+     * @var string
+     */
     protected $tableName = "time_records";
 
+    /**
+     * @param Entities\IEntity $timeRecord
+     */
     public function save(Entities\IEntity $timeRecord)
     {
 
@@ -23,6 +30,9 @@ class TimeRecord extends Model
         $query->execute();
     }
 
+    /**
+     * @param Entities\IEntity $entity
+     */
     public function update(Entities\IEntity $entity)
     {
         $query = $this->getPdo()->prepare("UPDATE " . $this->getTableName() . " SET title = :title, initDate = :initDate, endDate = :endDate, duration = :duration WHERE id = :id");
