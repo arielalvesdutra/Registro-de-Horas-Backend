@@ -35,9 +35,9 @@ abstract class Model implements IModel
      */
     protected $pdo;
 
-    public function __construct()
+    public function __construct(\PDO $pdo)
     {
-        $this->setPdo(Database::connect());
+        $this->setPdo($pdo);
     }
 
     /**

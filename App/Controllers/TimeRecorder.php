@@ -1,11 +1,10 @@
 <?php
 
-
-
 namespace App\Controllers;
 
 use App\Models;
 use App\Repositories;
+use App\Core;
 use App\Services;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,7 +17,7 @@ class TimeRecorder extends Controller {
     public function __construct()
     {
         $this->setRepository(new Repositories\TimeRecorder(
-            new Models\TimeRecord(),
+            new Models\TimeRecord(Core\Database::connect()),
             new Services\TimeRecorderService()
         ));
     }
