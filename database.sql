@@ -1,4 +1,4 @@
-create table if not exists records (
+create table if not exists time_records (
   id int(11) auto_increment NOT NULL,
   title varchar (55) not null,
   initDate varchar(20),
