@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Controllers;
 
 use App\Models;
@@ -8,6 +10,9 @@ use App\Services;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * @property Repositories\TimeRecorder $repository
+ */
 class TimeRecorder extends Controller {
 
     public function __construct()
@@ -56,11 +61,16 @@ class TimeRecorder extends Controller {
      */
     public function getRecords(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $queryParameters = $request->getQueryParams();
+        try {
 
-        $records = $this->repository->getTimeRecords($queryParameters);
+            $queryParameters = $request->getQueryParams();
 
-        return $response->withJson($records);
+            $records = $this->repository->getTimeRecords($queryParameters);
+
+            return $response->withJson($records);
+        } catch (\Exception $exception) {
+            return $response->withStatus(500);
+        }
     }
 
     /**

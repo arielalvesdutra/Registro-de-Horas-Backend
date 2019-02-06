@@ -12,6 +12,4 @@ abstract class Controller
     {
         $this->repository = $repository;
     }
-
-
 }
