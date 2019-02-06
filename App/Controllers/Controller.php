@@ -2,37 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Core\Database;
-use Psr\Http\Message\ResponseInterface;
-//use Psr\Http\Message\ResponseInterface;
+use App\Repositories\Repository;
 
-use Psr\Http\Message\ServerRequestInterface;
+abstract class Controller
+{
+    protected $repository;
 
-class Controller {
-
-    public function info()
+    protected function setRepository(Repository $repository)
     {
-        phpinfo();
+        $this->repository = $repository;
     }
 
-    public function test()
-    {
-        echo "It works!";
-    }
-
-    public function testDatabaseConnection()
-    {
-        Database::connect();
-    }
-
-    public function testJsonResponse(ServerRequestInterface $request,
-                                     ResponseInterface $response)
-    {
-        $data = [
-            'teste' => 'funcionando'
-        ];
-
-        return $response->withJson($data, 302);
-    }
 
 }
