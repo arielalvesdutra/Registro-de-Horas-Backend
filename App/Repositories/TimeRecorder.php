@@ -3,77 +3,89 @@
 namespace App\Repositories;
 
 use App\Factories;
-use App\Models;
+
+use App\Models\TimeRecord;
+
 use App\Services\TimeRecorderService;
-use App\Utils;
 
 class TimeRecorder extends Repository
 {
 
-    public static function addTimeRecord($parameters = [])
+    public function __construct(TimeRecord $model, TimeRecorderService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return string
+     */
+    public function addTimeRecord($parameters = [])
     {
 
-        $timeRecord = Factories\TimeRecord::create($parameters);
+        $this->service->validateTimeRecordParameters($parameters);
 
-        $timeRecorderService = new TimeRecorderService();
+        $timeRecord = Factories\TimeRecord::create($parameters);
 
         $timeRecord->setDuration(
-            $timeRecorderService->calculateTimeDuration($timeRecord)
+            $this->service->calculateTimeDuration($timeRecord)
         );
 
-        Models\TimeRecord::save($timeRecord);
+        $this->model->save($timeRecord);
     }
 
-    public static function deleteTimeRecord(int $id)
+    /**
+     * @param int $recordId
+     */
+    public function deleteTimeRecord(int $recordId)
     {
-        Models\TimeRecord::delete($id);
+        $this->model->delete($recordId);
     }
 
-    public static function getTimeRecords()
+    /**
+     * @param array $parameters
+     *
+     * @return array|string
+     */
+    public function getTimeRecords($parameters = [])
     {
-        $records = Models\TimeRecord::all();
+        try {
 
-        return $records;
-    }
+            $this->service->validateTimeRecordParameters($parameters);
 
-    public static function getTimeRecordsByFilters($filters = [])
-    {
-        // TODO: se não tiver nenhum filtro válido, gerá um exceção
-        // TODO: validar os valores dos filtros
-        // TODO: criar método para realizar as formatações necessárias para cada campo
+            $formattedParameters = $this->service->formatParameters($parameters);
 
-        if($filters['initDate']) {
-            $filters['initDate'] = TimeRecorderService::formatDate($filters['initDate']);
+            $this->model->setOrder($formattedParameters['order']);
+
+            if($formattedParameters['filters']) {
+                foreach ($formattedParameters['filters'] as $key => $filter) {
+                    $this->model->addFilter($key, $filter);
+                }
+            }
+
+            return $this->model->find();
+
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
         }
-
-        $records = Models\TimeRecord::getRecordsByFilters($filters);
-
-        return $records;
     }
 
-    public static function getTimeRecordsByInitDate(string $date)
-    {
-        // TODO: ->validarData
-
-        $formattedDate = TimeRecorderService::formatDate($date);
-
-        $records = Models\TimeRecord::getRecordsByInitDate($formattedDate);
-
-        return $records;
-    }
-
-    public static function updateTimeRecord($parameters = [])
+    /**
+     * @param array $parameters
+     */
+    public function updateTimeRecord($parameters = [])
     {
         $timeRecord = Factories\TimeRecord::create($parameters);
-        $timeRecorderService = new TimeRecorderService();
 
         //TODO: validar campos
         //TODO: validar se há modificação
 
         $timeRecord->setDuration(
-            $timeRecorderService->calculateTimeDuration($timeRecord)
+            $this->service->calculateTimeDuration($timeRecord)
         );
 
-        Models\TimeRecord::update($timeRecord);
+        $this->model->update($timeRecord);
     }
 }
