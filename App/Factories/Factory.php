@@ -2,6 +2,8 @@
 
 namespace App\Factories;
 
-class Factory {
+abstract  class Factory
+{
 
+    abstract static function create($parameters = []);
 }

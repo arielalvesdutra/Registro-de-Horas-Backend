@@ -2,56 +2,104 @@
 
 namespace App\Controllers;
 
+use App\Core;
+use App\Models;
 use App\Repositories;
+use App\Services;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class TimeRecorder extends Controller {
+/**
+ * @property Repositories\TimeRecorder $repository
+ */
+class TimeRecorder extends Controller
+{
 
-    public function addRecord(ServerRequestInterface $request)
+    public function __construct()
     {
-        $parameters = $request->getParsedBody();
-
-        Repositories\TimeRecorder::addTimeRecord($parameters);
+        $this->setRepository(new Repositories\TimeRecorder(
+            new Models\TimeRecord(Core\Database::connect()),
+            new Services\TimeRecorderService()
+        ));
     }
 
-    public function deleteRecord(ServerRequestInterface $request)
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return ResponseInterface
+     */
+    public function addRecord(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $id = $request->getAttribute('id');
+        try {
 
-        Repositories\TimeRecorder::deleteTimeRecord($id);
+            $parameters = $request->getParsedBody();
+
+            $this->repository->addTimeRecord($parameters);
+
+            return $response->withStatus(200);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return ResponseInterface
+     */
+    public function deleteRecord(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        try {
+
+            $recordId = $request->getAttribute('id');
+
+            $this->repository->deleteTimeRecord($recordId);
+
+            return $response->withStatus(200);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return JSON
+     */
     public function getRecords(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $records  = Repositories\TimeRecorder::getTimeRecords();
+        try {
 
-        return $response->withJson($records);
+            $queryParameters = $request->getQueryParams();
+
+            $records = $this->repository->getTimeRecords($queryParameters);
+
+            return $response->withJson($records);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
     }
 
-    public function getRecordsByInitDate(ServerRequestInterface $request, ResponseInterface $response)
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return ResponseInterface
+     */
+    public function updateRecord(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $date = $request->getAttribute('date');
+        try {
 
-        $records = Repositories\TimeRecorder::getTimeRecordsByInitDate($date);
+            $parameters = $request->getParsedBody();
 
-        return $response->withJson($records);
-    }
+            $this->repository->updateTimeRecord($parameters);
 
-    public function getRecordsByFilters(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        $queryParams = $request->getQueryParams();
-
-        $records = Repositories\TimeRecorder::getTimeRecordsByFilters($queryParams);
-
-        return $response->withJson($records);
-    }
-
-
-    public function updateRecord(ServerRequestInterface $request)
-    {
-        $parameters = $request->getParsedBody();
-
-        Repositories\TimeRecorder::updateTimeRecord($parameters);
+            return $response->withStatus(200);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
     }
 }

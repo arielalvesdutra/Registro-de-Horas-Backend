@@ -2,8 +2,11 @@
 
 namespace App\Entities;
 
-class Entity
+abstract class Entity implements IEntity
 {
+    /**
+     * @var int
+     */
     private $id;
 
     public function __construct($parameters = [])
@@ -13,11 +16,17 @@ class Entity
         }
     }
 
+    /**
+     * @param int $id
+     */
     protected function setId(int $id)
     {
         $this->id = $id;
     }
 
+    /**
+     * @return int
+     */
     public function getId() : int
     {
         return $this->id;
