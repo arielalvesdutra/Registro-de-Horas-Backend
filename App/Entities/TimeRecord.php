@@ -6,22 +6,30 @@ class TimeRecord extends Entity
 {
 
     /**
-     * @var string Título do registro
+     * Título do registro
+     *
+     * @var string
      */
     protected $title;
 
     /**
-     * @var string Inicio do registro
+     * Inicio do registro
+     *
+     * @var string
      */
     protected $initTime;
 
     /**
-     * @var string Final do registro
+     * Final do registro
+     *
+     * @var string
      */
     protected $endTime;
 
     /**
-     * @var string Duração do registro
+     * Duração do registro
+     *
+     * @var string
      */
     protected $duration;
 
