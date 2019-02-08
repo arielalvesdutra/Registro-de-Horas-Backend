@@ -152,7 +152,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     public function validateGetTimeRecordsParameters(array $parameters)
     {
         if ($parameters['title'] && !$this->isValidTitle($parameters['title'])) {
-            throw new \Exception('Data inicial inválida!');
+            throw new \Exception('Título inválido!');
         }
 
         if ($parameters['initDate'] && !$this->isValidDate($parameters['initDate'])) {

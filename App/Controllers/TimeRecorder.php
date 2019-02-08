@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Core;
 use App\Models;
 use App\Repositories;
-use App\Core;
 use App\Services;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

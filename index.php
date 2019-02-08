@@ -13,6 +13,10 @@ $app = new App([
     ]
 ]);
 
+/**
+ * Permite requisições externas e evita o erro
+ * de Access-Control-Allow
+ */
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
@@ -34,7 +38,6 @@ $app->get('/', function(){
 $app->get('/info', Test::class. ':info');
 $app->get('/json', Test::class. ':testJsonResponse');
 $app->get('/test', Test::class. ':test');
-$app->get('/testDatabaseConnection', Test::class. ':testDatabaseConnection');
 
 /**
  * Time Recorder
