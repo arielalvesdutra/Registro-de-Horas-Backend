@@ -82,12 +82,20 @@ class TimeRecord extends Entity
         return $this->endTime;
     }
 
+    /**
+     * @param string $duration
+     *
+     * @return $this
+     */
     public function setDuration(string $duration)
     {
         $this->duration = $duration;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getDuration(): string
     {
         return $this->duration;
