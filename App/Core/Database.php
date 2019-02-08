@@ -4,6 +4,7 @@ namespace App\Core;
 
 /**
  * Classe responsável por se conectar com o banco de dados
+ * e retornar um objeto \PDO
  *
  * Class Database
  * @package App\Core
