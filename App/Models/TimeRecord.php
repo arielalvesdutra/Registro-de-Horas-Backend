@@ -31,6 +31,18 @@ class TimeRecord extends Model
     }
 
     /**
+     * @param string $orderBy
+     */
+    public function setOrderBy(string $orderBy): void
+    {
+        if (empty($orderBy)) {
+            $this->orderBy = 'initDate DESC';
+        } else {
+            $this->orderBy = $orderBy;
+        }
+    }
+
+    /**
      * @param Entities\IEntity $entity
      */
     public function update(Entities\IEntity $entity)
