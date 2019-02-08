@@ -21,9 +21,8 @@ class TimeRecorder extends Repository
      *
      * @throws \Exception
      */
-    public function addTimeRecord($parameters = [])
+    public function addTimeRecord(array $parameters = [])
     {
-
         $this->service->validateTimeRecordParameters($parameters);
 
         $timeRecord = Factories\TimeRecord::create($parameters);
@@ -35,11 +34,16 @@ class TimeRecorder extends Repository
         $this->model->save($timeRecord);
     }
 
+
     /**
      * @param int $recordId
+     *
+     * @throws \Exception
      */
     public function deleteTimeRecord(int $recordId)
     {
+        $this->service->validateIdField($recordId);
+
         $this->model->delete($recordId);
     }
 
@@ -55,12 +59,13 @@ class TimeRecorder extends Repository
 
         $this->service->validateTimeRecordParameters($parameters);
 
-        $formattedParameters = $this->service->formatTimeRecordParameters($parameters);
+        $filters = $this->service->getFiltersQueryParameters($parameters);
+        $ordination = $this->service->getOrderByQueryParameter($parameters);
 
-        $this->model->setOrderBy($formattedParameters['order']);
+        $this->model->setOrderBy($ordination);
 
-        if($formattedParameters['filters']) {
-            foreach ($formattedParameters['filters'] as $key => $filter) {
+        if ($filters) {
+            foreach ($filters as $key => $filter) {
                 $this->model->addFilter($key, $filter);
             }
         }
@@ -77,7 +82,9 @@ class TimeRecorder extends Repository
     {
         $timeRecord = Factories\TimeRecord::create($parameters);
 
-        //TODO: validar campos
+        $this->service->validateIdField($parameters['id']);
+        $this->service->validateTimeRecordParameters($parameters);
+
         //TODO: validar se há modificação
 
         $timeRecord->setDuration(
