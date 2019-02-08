@@ -23,7 +23,7 @@ class TimeRecorder extends Repository
      */
     public function addTimeRecord(array $parameters = [])
     {
-        $this->service->validateTimeRecordParameters($parameters);
+        $this->service->validateAddTimeRecordParameters($parameters);
 
         $timeRecord = Factories\TimeRecord::create($parameters);
 
@@ -57,7 +57,7 @@ class TimeRecorder extends Repository
     public function getTimeRecords($parameters = [])
     {
 
-        $this->service->validateTimeRecordParameters($parameters);
+        $this->service->validateGetTimeRecordsParameters($parameters);
 
         $filters = $this->service->getFiltersQueryParameters($parameters);
         $ordination = $this->service->getOrderByQueryParameter($parameters);
@@ -82,8 +82,7 @@ class TimeRecorder extends Repository
     {
         $timeRecord = Factories\TimeRecord::create($parameters);
 
-        $this->service->validateIdField($parameters['id']);
-        $this->service->validateTimeRecordParameters($parameters);
+        $this->service->validateUpdateTimeRecordParameters($parameters);
 
         //TODO: validar se há modificação
 
