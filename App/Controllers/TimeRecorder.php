@@ -12,7 +12,8 @@ use Psr\Http\Message\ServerRequestInterface;
 /**
  * @property Repositories\TimeRecorder $repository
  */
-class TimeRecorder extends Controller {
+class TimeRecorder extends Controller
+{
 
     public function __construct()
     {
@@ -38,18 +39,28 @@ class TimeRecorder extends Controller {
 
             return $response->withStatus(200);
         } catch (\Exception $exception) {
-            return $response->withStatus(500);
+            return $response->withStatus(400);
         }
     }
 
     /**
      * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return ResponseInterface
      */
-    public function deleteRecord(ServerRequestInterface $request)
+    public function deleteRecord(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $id = $request->getAttribute('id');
+        try {
 
-        $this->repository->deleteTimeRecord($id);
+            $recordId = $request->getAttribute('id');
+
+            $this->repository->deleteTimeRecord($recordId);
+
+            return $response->withStatus(200);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
     }
 
     /**
@@ -68,19 +79,27 @@ class TimeRecorder extends Controller {
 
             return $response->withJson($records);
         } catch (\Exception $exception) {
-            return $response->withStatus(500);
+            return $response->withStatus(400);
         }
     }
 
     /**
      * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
      *
-     * @throws \Exception
+     * @return ResponseInterface
      */
-    public function updateRecord(ServerRequestInterface $request)
+    public function updateRecord(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $parameters = $request->getParsedBody();
+        try {
 
-        $this->repository->updateTimeRecord($parameters);
+            $parameters = $request->getParsedBody();
+
+            $this->repository->updateTimeRecord($parameters);
+
+            return $response->withStatus(200);
+        } catch (\Exception $exception) {
+            return $response->withStatus(400);
+        }
     }
 }
