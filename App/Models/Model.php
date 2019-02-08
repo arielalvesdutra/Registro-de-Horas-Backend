@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use App\Core\Database;
-
+/**
+ * Class Model
+ * @package App\Models
+ */
 abstract class Model implements IModel
 {
 
