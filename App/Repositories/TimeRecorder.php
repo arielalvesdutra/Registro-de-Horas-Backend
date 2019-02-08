@@ -80,9 +80,9 @@ class TimeRecorder extends Repository
      */
     public function updateTimeRecord($parameters = [])
     {
-        $timeRecord = Factories\TimeRecord::create($parameters);
-
         $this->service->validateUpdateTimeRecordParameters($parameters);
+
+        $timeRecord = Factories\TimeRecord::create($parameters);
 
         //TODO: validar se há modificação
 
