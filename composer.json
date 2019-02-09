@@ -1,6 +1,7 @@
 {
   "name": "Registro de Horas - Backend",
   "description": "Aplicação para registrar horas de esforços.",
+  "version": "0.1.0",
   "authors": [
     {
       "name": "Ariel Alves Dutra",

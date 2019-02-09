@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f55a3b305f11e0379d03235b942502de",
+    "content-hash": "42ebcbf8a1e35aeba739e0ae3fb89bdd",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -238,12 +238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "f4947cc900b6e51cbfda58b9f1247bca2f76f9f0"
+                "reference": "e97d122a37b854485f39e42b23a72ec245cd276c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/f4947cc900b6e51cbfda58b9f1247bca2f76f9f0",
-                "reference": "f4947cc900b6e51cbfda58b9f1247bca2f76f9f0",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/e97d122a37b854485f39e42b23a72ec245cd276c",
+                "reference": "e97d122a37b854485f39e42b23a72ec245cd276c",
                 "shasum": ""
             },
             "require": {
@@ -301,7 +301,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2019-01-15T13:21:25+00:00"
+            "time": "2019-02-08T20:20:59+00:00"
         }
     ],
     "packages-dev": [],
@@ -310,6 +310,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.3"
+    },
     "platform-dev": []
 }
