@@ -16,5 +16,13 @@
     - `chmod +x composer.phar`
     - `sudo mv composer.phar /usr/local/bin/composer`
 
+## PHPUnit
 
+- É possível instalar o PHPUnit atraves do composer:
+    - `composer require --dev phpunit/phpunit ^8`
+    - `composer update` ou `composer update --ignore-platform-reqs`
+- Para executar o PHPUnit (na pasta raiz do projeto):
+    - `vendor/bin/phpunit`
+- Dependência do php7.3-xml:
+    - `sudo apt install php7.3-xml`
     
