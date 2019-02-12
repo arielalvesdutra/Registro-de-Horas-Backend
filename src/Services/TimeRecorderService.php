@@ -1,5 +1,7 @@
 <?php
 
+// TODO: aplicar princípio SRP e utilizar patterns para separar as responsabilidades
+
 namespace App\Services;
 
 use App\Entities;
