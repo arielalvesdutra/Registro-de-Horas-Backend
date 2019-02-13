@@ -26,14 +26,14 @@ class TimeRecordTest extends TestCase
 
         $record = new TimeRecord(['id' => $id]);
         $record->setTitle($title)
-                ->setInitTime($initDate)
-                ->setEndTime($endDate)
+                ->setInitDate($initDate)
+                ->setEndDate($endDate)
                 ->setDuration($duration);
 
         $this->assertEquals($id, $record->getId(), 'Erro no set ou get do id.');
         $this->assertEquals($title, $record->getTitle(), 'Erro no set ou get do título.');
-        $this->assertEquals($initDate, $record->getInitTime(), 'Erro no set ou get da data inicial.');
-        $this->assertEquals($endDate, $record->getEndTime(), 'Erro no set ou get da data final.');
+        $this->assertEquals($initDate, $record->getInitDate(), 'Erro no set ou get da data inicial.');
+        $this->assertEquals($endDate, $record->getEndDate(), 'Erro no set ou get da data final.');
         $this->assertEquals($duration, $record->getDuration(), 'Erro no set ou get da duração.');
     }
 }

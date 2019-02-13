@@ -17,14 +17,14 @@ class TimeRecord extends Entity
      *
      * @var string
      */
-    protected $initTime;
+    protected $initDate;
 
     /**
      * Final do registro
      *
      * @var string
      */
-    protected $endTime;
+    protected $endDate;
 
     /**
      * Duração do registro
@@ -53,41 +53,41 @@ class TimeRecord extends Entity
     }
 
     /**
-     * @param string $initTime
+     * @param string $initDate
      *
      * @return $this
      */
-    public function setInitTime(string $initTime)
+    public function setInitDate(string $initDate)
     {
-        $this->initTime = $initTime;
+        $this->initDate = $initDate;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getInitTime(): string
+    public function getInitDate(): string
     {
-        return $this->initTime;
+        return $this->initDate;
     }
 
     /**
-     * @param string $endTime
+     * @param string $endDate
      *
      * @return $this
      */
-    public function setEndTime(string $endTime)
+    public function setEndDate(string $endDate)
     {
-        $this->endTime = $endTime;
+        $this->endDate = $endDate;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getEndTime(): string
+    public function getEndDate(): string
     {
-        return $this->endTime;
+        return $this->endDate;
     }
 
     /**

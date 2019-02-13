@@ -28,7 +28,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      */
     public function calculateTimeDuration(Entities\TimeRecord $timeRecord): string
     {
-        return $this->subtractDateTime($timeRecord->getInitTime(), $timeRecord->getEndTime());
+        return $this->subtractDateTime($timeRecord->getInitDate(), $timeRecord->getEndDate());
     }
 
     /**

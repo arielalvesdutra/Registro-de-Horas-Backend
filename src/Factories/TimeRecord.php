@@ -11,8 +11,8 @@ class TimeRecord extends Factory
     {
         $timeRecord = (new Entities\TimeRecord($parameters))
             ->setTitle($parameters['title'])
-            ->setInitTime($parameters['initDate'])
-            ->setEndTime($parameters['endDate']);
+            ->setInitDate($parameters['initDate'])
+            ->setEndDate($parameters['endDate']);
 
         if ($parameters['duration']) {
             $timeRecord->setDuration($parameters['duration']);
