@@ -7,7 +7,7 @@ abstract class Entity implements IEntity
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     public function __construct($parameters = [])
     {
