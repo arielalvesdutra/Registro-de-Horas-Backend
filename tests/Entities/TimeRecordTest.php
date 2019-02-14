@@ -1,8 +1,7 @@
 <?php
 
-//namespace App\Entities;
+namespace App\Entities;
 
-use App\Entities\TimeRecord;
 use PHPUnit\Framework\TestCase;
 
 class TimeRecordTest extends TestCase
@@ -13,7 +12,6 @@ class TimeRecordTest extends TestCase
             class_exists('App\Entities\TimeRecord'),
             "Classe App\Entities\TimeRecord não encontrada."
         );
-
     }
 
     public function testShouldGettersAndSettersWork()
