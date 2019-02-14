@@ -14,7 +14,7 @@ class TimeRecord extends Factory
             ->setInitDate($parameters['initDate'])
             ->setEndDate($parameters['endDate']);
 
-        if ($parameters['duration']) {
+        if (isset($parameters['duration'])) {
             $timeRecord->setDuration($parameters['duration']);
         }
 
