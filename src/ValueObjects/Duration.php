@@ -111,7 +111,7 @@ class Duration extends ValueObject
     private function setSeconds(string $seconds): void
     {
         if (strlen($seconds) != 2) {
-            throw new Exception('Minutes parameter is invalid.');
+            throw new Exception('Seconds parameter is invalid.');
         }
 
         if (!preg_match(self::ONLY_NUMBER_REGULAR_EXPRESSION, $seconds)) {
