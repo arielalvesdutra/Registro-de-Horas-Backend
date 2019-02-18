@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ariel-dutra
- * Date: 15/02/19
- * Time: 22:03
- */
 
 namespace App\Decorators;
 
