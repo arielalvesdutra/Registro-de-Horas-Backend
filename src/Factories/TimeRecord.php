@@ -36,7 +36,7 @@ class TimeRecord extends Factory
             throw new Exception('InitDateTime is greater than endDateTime.');
         }
 
-        if (isset($parameters['duration'])) {
+        if (isset($parameters['duration']) && !empty(($parameters['duration']))) {
             $timeRecord->setDuration(
                 new Duration(
                     $parameters['duration']['hours'],
