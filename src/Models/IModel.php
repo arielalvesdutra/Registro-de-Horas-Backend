@@ -17,6 +17,14 @@ interface IModel
     public function addFilter(string $filter, string $filterValue): void;
 
     /**
+     * Recebe um array de filtros e adiciona na propriedade
+     * que contém um array de filtros.
+     *
+     * @param array $filters
+     */
+    public function addFilters(array $filters): void;
+
+    /**
      * Retorna todos os registros
      *
      * @return mixed
