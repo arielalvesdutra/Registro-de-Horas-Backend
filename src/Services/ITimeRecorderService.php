@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\TimeRecord;
+use App\ValueObjects\Duration;
 
 interface ITimeRecorderService
 {
@@ -15,7 +16,7 @@ interface ITimeRecorderService
      *
      * @return string
      */
-    public function calculateTimeDuration(TimeRecord $timeRecord): string;
+    public function calculateTimeDuration(TimeRecord $timeRecord): Duration ;
 
     /**
      * Retorna um array com os filtros formatados recebidos em uma requisição
@@ -64,7 +65,7 @@ interface ITimeRecorderService
      *
      * @throws \Exception
      */
-    public function validateEndDateField(string $endDate);
+    public function validateEndDateTimeField(string $endDate);
 
     /**
      * @param array $parameters
@@ -85,7 +86,7 @@ interface ITimeRecorderService
      *
      * @throws \Exception
      */
-    public function validateInitDateField(string $initDate);
+    public function validateInitDateTimeField(string $initDate);
 
     /**
      * @param array $parameters
