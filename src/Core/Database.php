@@ -12,7 +12,7 @@ namespace App\Core;
 class Database
 {
     /** @var string host de conexão com o banco*/
-    private $host = "192.168.11.101";
+    private $host = "192.168.11.100";
 
     /** @var string base de dados de conexão com o banco */
     private $database = "registro-horas";

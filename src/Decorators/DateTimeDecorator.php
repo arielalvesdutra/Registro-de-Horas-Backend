@@ -11,7 +11,7 @@ namespace App\Decorators;
 use DateTime;
 
 /**
- * TODO: documentar
+ * Decorator de que formata a data no padrão da aplicação.
  *
  * Class DateTimeDecorator
  * @package App\Decorators
