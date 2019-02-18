@@ -15,17 +15,18 @@ class TimeRecord extends Model
     protected $tableName = "time_records";
 
     /**
-     * @param Entities\IEntity $timeRecord
+     * @param Entities\TimeRecord $timeRecord
      */
     public function save(Entities\IEntity $timeRecord)
     {
 
-        $query = $this->getPdo()->prepare("INSERT INTO " . $this->getTableName() . " (title, initDate, endDate, duration)
+        $query = $this->getPdo()->prepare("INSERT INTO " . $this->getTableName() . " (title, initDateTime, endDateTime, duration)
                   VALUES (:title, :initDate, :endDate, :duration)");
+
         $query->bindParam(':title', $timeRecord->getTitle());
-        $query->bindParam(':initDate', $timeRecord->getInitTime());
-        $query->bindParam(':endDate', $timeRecord->getEndTime());
-        $query->bindParam(':duration', $timeRecord->getDuration());
+        $query->bindParam(':initDate', $timeRecord->getInitDateTime()->__toString());
+        $query->bindParam(':endDate', $timeRecord->getEndDateTime()->__toString());
+        $query->bindParam(':duration', $timeRecord->getDuration()->__toString());
 
         $query->execute();
     }
@@ -36,23 +37,25 @@ class TimeRecord extends Model
     public function setOrderBy(string $orderBy): void
     {
         if (empty($orderBy)) {
-            $this->orderBy = 'initDate DESC';
+            $this->orderBy = 'initDateTime DESC';
         } else {
             $this->orderBy = $orderBy;
         }
     }
 
     /**
-     * @param Entities\IEntity $entity
+     * @param Entities\TimeRecord $timeRecord
      */
-    public function update(Entities\IEntity $entity)
+    public function update(Entities\IEntity $timeRecord)
     {
-        $query = $this->getPdo()->prepare("UPDATE " . $this->getTableName() . " SET title = :title, initDate = :initDate, endDate = :endDate, duration = :duration WHERE id = :id");
-        $query->bindParam(':id', $entity->getId());
-        $query->bindParam(':title', $entity->getTitle());
-        $query->bindParam(':initDate', $entity->getInitTime());
-        $query->bindParam(':endDate', $entity->getEndTime());
-        $query->bindParam(':duration', $entity->getDuration());
+
+        $query = $this->getPdo()->prepare("UPDATE " . $this->getTableName() . " SET title = :title, initDateTime = :initDate, endDateTime = :endDate, duration = :duration WHERE id = :id");
+
+        $query->bindParam(':id', $timeRecord->getId());
+        $query->bindParam(':title', $timeRecord->getTitle());
+        $query->bindParam(':initDate', $timeRecord->getInitDateTime()->__toString());
+        $query->bindParam(':endDate', $timeRecord->getEndDateTime()->__toString());
+        $query->bindParam(':duration', $timeRecord->getDuration()->__toString());
 
         $query->execute();
     }

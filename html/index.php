@@ -1,6 +1,6 @@
 <?php
 
-require 'bootstrap.php';
+require '../bootstrap.php';
 
 use App\Controllers\Test;
 use App\Controllers\TimeRecorder;

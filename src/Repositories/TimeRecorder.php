@@ -23,6 +23,7 @@ class TimeRecorder extends Repository
      */
     public function addTimeRecord(array $parameters = [])
     {
+
         $this->service->validateAddTimeRecordParameters($parameters);
 
         $timeRecord = Factories\TimeRecord::create($parameters);
@@ -33,7 +34,6 @@ class TimeRecorder extends Repository
 
         $this->model->save($timeRecord);
     }
-
 
     /**
      * @param int $recordId
@@ -63,12 +63,7 @@ class TimeRecorder extends Repository
         $ordination = $this->service->getOrderByQueryParameter($parameters);
 
         $this->model->setOrderBy($ordination);
-
-        if ($filters) {
-            foreach ($filters as $key => $filter) {
-                $this->model->addFilter($key, $filter);
-            }
-        }
+        $this->model->addFilters($filters);
 
         return $this->model->find();
     }
@@ -83,8 +78,6 @@ class TimeRecorder extends Repository
         $this->service->validateUpdateTimeRecordParameters($parameters);
 
         $timeRecord = Factories\TimeRecord::create($parameters);
-
-        //TODO: validar se há modificação
 
         $timeRecord->setDuration(
             $this->service->calculateTimeDuration($timeRecord)

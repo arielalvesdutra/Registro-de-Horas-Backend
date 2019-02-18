@@ -25,4 +25,12 @@
     - `vendor/bin/phpunit`
 - Dependência do php7.3-xml:
     - `sudo apt install php7.3-xml`
-    
+
+## Executar o ambiente docker
+- É necessário ter o `docker` e o `docker-compose` instalado
+- Acessar a pasta `env/` e executar:
+    - `docker-compose up`, `sudo docker-compose up` ou `sudo docker-compose up -d`
+- O endereço pré-configurado do apache é o `http://localhost:8000`
+- MySQL...
+    - Porta: 3600 
+    - ...

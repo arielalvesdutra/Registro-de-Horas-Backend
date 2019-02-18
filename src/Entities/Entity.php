@@ -7,11 +7,11 @@ abstract class Entity implements IEntity
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     public function __construct($parameters = [])
     {
-        if ($parameters['id']) {
+        if (isset($parameters['id'])) {
             $this->setId((int) $parameters['id']);
         }
     }
