@@ -52,6 +52,16 @@ abstract class Model implements IModel
     }
 
     /**
+     * @param array $filters
+     */
+    public function addFilters(array $filters): void
+    {
+        foreach ($filters as $key => $filter) {
+            $this->addFilter($key, $filter);
+        }
+    }
+
+    /**
      * @return array
      */
     public function all()
