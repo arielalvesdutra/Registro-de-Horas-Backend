@@ -1,10 +1,10 @@
 <?php
 
-// TODO: aplicar princípio SRP e utilizar patterns para separar as responsabilidades
-
 namespace App\Services;
 
+use App\Decorators\DateTimeDecorator;
 use App\Entities;
+use App\ValueObjects\Duration;
 
 /**
  * Class TimeRecorderService
@@ -22,13 +22,13 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     /**
      * @param Entities\TimeRecord $timeRecord
      *
-     * @return string
+     * @return Duration
      *
      * @throws \Exception
      */
-    public function calculateTimeDuration(Entities\TimeRecord $timeRecord): string
+    public function calculateTimeDuration(Entities\TimeRecord $timeRecord): Duration
     {
-        return $this->subtractDateTime($timeRecord->getInitDate(), $timeRecord->getEndDate());
+        return $this->subtractDateTime($timeRecord->getInitDateTime(), $timeRecord->getEndDateTime());
     }
 
     /**
@@ -47,7 +47,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
         }
 
         if ($parameters['initDate']) {
-            $filters['initDate'] = " like '". $this->formatDate($parameters['initDate']). "%'";
+            $filters['initDateTime'] = " like '". $this->formatDate($parameters['initDate']). "%'";
         }
 
         return $filters;
@@ -62,6 +62,10 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     {
         if (empty($parameters['order'])) {
             return '';
+        }
+
+        if($parameters['order'] == 'initDate') {
+            return 'initDateTime';
         }
 
         return isset($parameters['desc'])
@@ -79,7 +83,6 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     public function isValidDate(string $date):bool
     {
         try {
-            $this->validateDateExpression($date);
 
             $this->validateDate($date);
 
@@ -131,8 +134,8 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     public function validateAddTimeRecordParameters(array $parameters): void
     {
         $this->validateTitleField($parameters['title']);
-        $this->validateInitDateField($parameters['initDate']);
-        $this->validateEndDateField($parameters['endDate']);
+        $this->validateInitDateTimeField($parameters['initDateTime']);
+        $this->validateEndDateTimeField($parameters['endDateTime']);
     }
 
     /**
@@ -140,9 +143,9 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      *
      * @throws \Exception
      */
-    public function validateEndDateField(string $endDate)
+    public function validateEndDateTimeField(string $endDate)
     {
-        $this->validateDateExpression($endDate);
+        $this->validateDateTimeExpression($endDate);
         $this->validateDate($endDate);
     }
 
@@ -187,9 +190,9 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      *
      * @throws \Exception
      */
-    public function validateInitDateField(string $initDate)
+    public function validateInitDateTimeField(string $initDate)
     {
-        $this->validateDateExpression($initDate);
+        $this->validateDateTimeExpression($initDate);
         $this->validateDate($initDate);
     }
 
@@ -214,8 +217,8 @@ class TimeRecorderService extends Service implements ITimeRecorderService
     {
         $this->validateIdField($parameters['id']);
         $this->validateTitleField($parameters['title']);
-        $this->validateInitDateField($parameters['initDate']);
-        $this->validateEndDateField($parameters['endDate']);
+        $this->validateInitDateTimeField($parameters['initDateTime']);
+        $this->validateEndDateTimeField($parameters['endDateTime']);
     }
 
     /**
@@ -266,25 +269,26 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      * Subtrai a data/hora final pela data/hora inicial e retorna a
      * duração em horas da diferença entra elas
      *
-     * @param string $initDate yyyy/mm/dd hh:ii:ss
-     * @param string $endDate  yyyy/mm/dd hh:ii:ss
+     * @param DateTimeDecorator $initDate
+     * @param DateTimeDecorator $endDate
      *
-     * @return string
+     * @return Duration
      *
-     * @throws \Exception
      */
-    private function subtractDateTime(string $initDate, string $endDate): string
+    private function subtractDateTime(DateTimeDecorator $initDate, DateTimeDecorator $endDate): Duration
     {
-        $date1 = new \DateTime($initDate);
-        $date2 = new \DateTime($endDate);
-        $dateDiff = $date2->diff($date1);
 
-        $minutesSeconds = $dateDiff->format('%I:%S');
-        $hours =  $this->getHoursFromDateInterval($dateDiff);
+        $dateDifference = $endDate->diff($initDate);
 
-        $formattedDate = ("$hours:$minutesSeconds");
+        $minutes = $dateDifference->format('%I');
+        $seconds = $dateDifference->format('%S');
+        $hours =  $this->getHoursFromDateInterval($dateDifference);
 
-        return $formattedDate;
+        return new Duration(
+            $hours,
+            $minutes,
+            $seconds
+        );
     }
 
     /**
@@ -304,7 +308,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      *
      * @throws \Exception
      */
-    private function validateDateExpression(string $date)
+    private function validateDateTimeExpression(string $date)
     {
         if (!preg_match(self::DATE_AND_HOUR_REGULAR_EXPRESSION, $date)) {
             throw new \Exception('Formato de data inválido!');
