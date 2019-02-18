@@ -5,7 +5,9 @@ namespace App\ValueObjects;
 use Exception;
 
 /**
- * @todo documentar
+ * Objeto de valor que representa a duração de um registro de tempo
+ *
+ * @example 14:10:10
  *
  * Class Duration
  * @package App\ValueObjects
