@@ -129,4 +129,19 @@ class TimeRecordTest extends TestCase
 
         TimeRecord::create($parameters);
     }
+
+    public function testWithIssetAndEmptyDurationParameterShouldCreateAnEntity()
+    {
+        $parameters = [
+            "id" => 1,
+            "title" => "Registro de tempo",
+            "initDateTime" => "2019/01/01 10:00:00",
+            "endDateTime" =>  "2019/01/01 12:00:00",
+            "duration" => ''
+        ];
+
+        $timeRecord = TimeRecord::create($parameters);
+
+        $this->assertInstanceOf('App\Entities\TimeRecord', $timeRecord, 'Returned object should be App\Entities\TimeRecord' );
+    }
 }
