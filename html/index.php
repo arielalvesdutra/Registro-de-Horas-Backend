@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Carrega o bootstrap da aplcicação
+ */
 require '../bootstrap.php';
 
 use App\Controllers\Test;
 use App\Controllers\TimeRecorder;
 use Slim\App;
 
+/**
+ * Instancia Slim
+ */
 $app = new App([
     'settings' => [
         'displayErrorDetails' => true,
