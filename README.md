@@ -77,6 +77,37 @@ $ ./vendor/bin/phpunit
 
 # Métodos
 
+#### addRecord()
+
+O backend recebe um JSON e salva no banco um registro de tempo.
+
+Rota | Tipo | Método  
+--- | --- | --- 
+http://localhost:8000/addRecord | POST |App\Controller\TimeRecorder->addRecord()
+
+Exemplo de requisição JSON:
+
+```json
+{
+  "title" : "Estudo de PHP",
+  "initDateTime" : "2019/01/10 10:06:01",
+  "endDateTime" : "2019/01/10 13:41:22"
+}
+```
+
+Se a requisição estivar mal formatada, será retornodo o status http `400`.
+
+#### deleteRecord()
+
+Recebe um parametro `{id}` (int) e deleta o registro no banco de dados.
+
+Rota | Tipo | Método  
+--- | --- | --- 
+http://localhost:8000/deleteRecord/{id} | DELETE |App\Controller\TimeRecorder->deleteRecord()
+
+Exemplo: `http://localhost:8000/deleteRecord/1`
+
+
 #### getRecords()
 
 Retorna os registros de esforço de tempo existentes no banco.
@@ -103,25 +134,4 @@ Ordenação.
 
 
 
-Url de exemplo: 
-- `http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc`
-
-#### addRecord()
-
-O backend recebe um JSON e salva no banco um registro de tempo.
-
-Rota | Tipo | Método  
---- | --- | --- 
-http://localhost:8000/addRecord | POST |App\Controller\TimeRecorder->addRecord()
-
-Exemplo de requisição JSON:
-
-```json
-{
-  "title" : "Estudo de PHP",
-  "initDateTime" : "2019/01/10 10:06:01",
-  "endDateTime" : "2019/01/10 13:41:22"
-}
-```
-
-Se a requisição estivar mal formatada, será retornodo o status http `400`.
+Exemplo: `http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc`
