@@ -77,7 +77,31 @@ $ ./vendor/bin/phpunit
 
 # Métodos
 
-Rota | Tipo | Método  | Descrição
---- | --- | --- | ---
-http://localhost:8000/getRecords | GET|App\Controller\TimeRecord->getRecords()  | ...
+#### getRecords()
 
+Retorna os registros de esforço de tempo existentes no banco.
+
+Rota | Tipo | Método  
+--- | --- | --- 
+http://localhost:8000/getRecords | GET|App\Controller\TimeRecord->getRecords()  
+http://localhost:8000/getRecords/filters?title=estudo | GET|App\Controller\TimeRecord->getRecords()  
+
+Filtros.
+
+|Filtros| Exemplo |
+|-------|---------|
+| `title` | title=estudo |
+| `initDate` | initDate=2019-01-10 |
+
+Ordenação.
+
+|Ordernação| Exemplo |
+|-------|---------|
+| `title` | order=title |
+| `initDate` | initDate=2019-01-10 |
+| `desc` | desc |
+
+
+
+Url de exemplo: 
+- http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc
