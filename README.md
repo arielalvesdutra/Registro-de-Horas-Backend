@@ -98,7 +98,7 @@ Ordenação.
 |Ordernação| Exemplo |
 |-------|---------|
 | `title` | order=title |
-| `initDate` | initDate=2019-01-10 |
+| `initDate` | order=initDate|
 | `desc` | desc |
 
 
