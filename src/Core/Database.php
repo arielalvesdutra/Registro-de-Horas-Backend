@@ -15,7 +15,7 @@ class Database
     private $host = "192.168.11.100";
 
     /** @var string base de dados de conexão com o banco */
-    private $database = "registro-horas";
+    private $database = "time_records_db";
 
     /** @var string porta de conexão com o banco*/
     private $port = "3600";
@@ -24,7 +24,7 @@ class Database
     private $user = "root";
 
     /** @var string senha de conexão com o banco*/
-    private $password = "exemplo";
+    private $password = "password";
 
     /**
      * @return \PDO
