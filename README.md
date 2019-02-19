@@ -20,9 +20,10 @@ Exemplo de esforço:
 - Final do registro: `2019/01/10 12:00:00`
 ```
 
-O backend irá receber uma requisição do frontend para adicionar esse registro de esforço de tempo e irá calcular a duração. Em seguida o frontend realizar uma solicitação dos registros e recebera o registro de tempo com a duração calculada. Depois de o backend calcular a duração e adicionar o registro no banco de dados, o registro ficará próximo de:
+O backend irá receber uma requisição do frontend para adicionar esse registro de esforço de tempo e irá calcular a duração. Em seguida o frontend realizará uma solicitação dos registros e receberá o registro de tempo com a duração calculada. Depois de o backend calcular a duração e adicionar o registro no banco de dados, o registro ficará próximo de:
 
 ```
+- Id: 1
 - Título: "Estudar PHP"
 - Inicio do registro: `2019/01/10 10:00:00`
 - Final do registro: `2019/01/10 12:00:00`
@@ -73,3 +74,10 @@ $ ./vendor/bin/phpunit
 ```
 
 ** Até o momento foram adicionados poucos testes à aplicação.
+
+# Métodos
+
+Rota | Tipo | Método  | Descrição
+--- | --- | --- | ---
+http://localhost:8000/getRecords | GET|App\Controller\TimeRecord->getRecords()  | ...
+
