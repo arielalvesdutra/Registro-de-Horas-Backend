@@ -38,6 +38,12 @@ O backend irá receber uma requisição do frontend para adicionar esse registro
 - Duração: `2:00:00`
 ```
 
+###
+
+Estrutura geral:
+
+![association graph](docs/Estrutura_Geral.jpg)
+
 # 2. Instalação
 ### Composer
 Instalar dependências com o composer.
