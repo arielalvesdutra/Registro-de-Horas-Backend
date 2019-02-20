@@ -143,3 +143,22 @@ Ordenação.
 
 
 Exemplo: `http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc`
+
+#### updateRecord()
+
+Recebe um JSON e atualiza o registro no banco de dados.
+
+Rota | Tipo | Método  
+--- | --- | --- 
+http://localhost:8000/updateRecord | PUT |App\Controllers\TimeRecorder->updateRecord()
+
+Exemplo de requisição JSON para atualizar um registro:
+
+```json
+{
+  "id": 1,
+  "title" : "Estudo de PHP - Iniciante",
+  "initDateTime" : "2019/01/10 09:02:33",
+  "endDateTime" : "2019/01/10 14:10:13"
+}
+```
