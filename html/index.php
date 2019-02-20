@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Carrega o bootstrap da aplcicação
+ */
 require '../bootstrap.php';
 
 use App\Controllers\Test;
 use App\Controllers\TimeRecorder;
 use Slim\App;
 
+/**
+ * Instancia Slim
+ */
 $app = new App([
     'settings' => [
         'displayErrorDetails' => true,
@@ -46,6 +52,6 @@ $app->delete('/deleteRecord/{id}', TimeRecorder::class . ':deleteRecord');
 $app->get('/getRecords', TimeRecorder::class . ':getRecords');
 $app->get('/getRecords/{filters}', TimeRecorder::class . ':getRecords');
 $app->post('/addRecord', TimeRecorder::class . ':addRecord');
-$app->put('/updateRecord/{id}', TimeRecorder::class . ':updateRecord');
+$app->put('/updateRecord', TimeRecorder::class . ':updateRecord');
 
 $app->run();
