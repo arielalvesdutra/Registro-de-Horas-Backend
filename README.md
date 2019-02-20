@@ -1,4 +1,11 @@
-# Descrição
+## Sumário 
+
+1. [Descriçao](#1-descrio)
+2. [Instalaçao](#2-instalao)
+3. [Testes Unitarios](#3-testes-unitrios)
+4. [Metodos](#4-mtodos)
+
+# 1. Descrição
 
 ### Sobre o projeto
 
@@ -30,7 +37,7 @@ O backend irá receber uma requisição do frontend para adicionar esse registro
 - Duração: `2:00:00`
 ```
 
-# Instalação
+# 2. Instalação
 ### Composer
 Instalar dependências com o composer.
 ```bash
@@ -65,7 +72,7 @@ Informações do ambiente docker:
 
 Instalar e executar ambiente do frontend [aqui](https://github.com/arielalvesdutra/Registro-de-Horas-Frontend).
 
-# Testes unitários
+# 3. Testes unitários
 
 Os testes são realizados com PHPUnit. Basta executar na raiz do projeto: 
 
@@ -75,7 +82,7 @@ $ ./vendor/bin/phpunit
 
 ** Até o momento foram adicionados poucos testes à aplicação.
 
-# Métodos
+# 4. Métodos
 
 #### addRecord()
 
@@ -83,7 +90,7 @@ O backend recebe um JSON e salva no banco um registro de tempo.
 
 Rota | Tipo | Método  
 --- | --- | --- 
-http://localhost:8000/addRecord | POST |App\Controller\TimeRecorder->addRecord()
+http://localhost:8000/addRecord | POST |App\Controllers\TimeRecorder->addRecord()
 
 Exemplo de requisição JSON:
 
@@ -103,7 +110,7 @@ Recebe um parametro `{id}` (int) e deleta o registro no banco de dados.
 
 Rota | Tipo | Método  
 --- | --- | --- 
-http://localhost:8000/deleteRecord/{id} | DELETE |App\Controller\TimeRecorder->deleteRecord()
+http://localhost:8000/deleteRecord/{id} | DELETE |App\Controllers\TimeRecorder->deleteRecord()
 
 Exemplo: `http://localhost:8000/deleteRecord/1`
 
@@ -114,8 +121,8 @@ Retorna os registros de esforço de tempo existentes no banco.
 
 Rota | Tipo | Método  
 --- | --- | --- 
-http://localhost:8000/getRecords | GET|App\Controller\TimeRecorder->getRecords()  
-http://localhost:8000/getRecords/filters?title=estudo | GET|App\Controller\TimeRecorder->getRecords()  
+http://localhost:8000/getRecords | GET|App\Controllers\TimeRecorder->getRecords()  
+http://localhost:8000/getRecords/filters?title=estudo | GET|App\Controllers\TimeRecorder->getRecords()  
 
 Filtros.
 
@@ -135,3 +142,5 @@ Ordenação.
 
 
 Exemplo: `http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc`
+
+
