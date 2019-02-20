@@ -38,7 +38,7 @@ O backend irá receber uma requisição do frontend para adicionar esse registro
 - Duração: `2:00:00`
 ```
 
-###
+### Estrutura geral
 
 Estrutura geral:
 
