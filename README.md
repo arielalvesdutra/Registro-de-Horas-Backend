@@ -1,9 +1,10 @@
 ## Sumário 
 
-1. [Descriçao](#1-descrio)
-2. [Instalaçao](#2-instalao)
-3. [Testes Unitarios](#3-testes-unitrios)
-4. [Metodos](#4-mtodos)
+1. [Descriçao](#1-descrição)
+2. [Instalaçao](#2-instalação)
+3. [Testes Unitarios](#3-testes-unitários)
+4. [Metodos](#4-métodos)
+
 
 # 1. Descrição
 
@@ -142,5 +143,3 @@ Ordenação.
 
 
 Exemplo: `http://localhost:8000/getRecords/filters?title=estudo&order=initDate&desc`
-
-
