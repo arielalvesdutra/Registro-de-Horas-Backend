@@ -1,7 +1,6 @@
 {
-  "name": "Registro de Horas - Backend",
+  "name": "arielalvesdutra/time-recorder",
   "description": "Aplicação para registrar horas de esforços.",
-  "version": "0.1.0",
   "authors": [
     {
       "name": "Ariel Alves Dutra",
@@ -11,7 +10,7 @@
   "minimum-stability": "dev",
   "require": {
     "slim/slim": "^3.0",
-    "php": ">=7.3"
+    "php": "^7.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^8"
