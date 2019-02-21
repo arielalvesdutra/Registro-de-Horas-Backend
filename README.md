@@ -72,8 +72,12 @@ Informações do ambiente docker:
     - host: é o ip da máquina que executa o docker
     - porta: `3600`
     - usuario padrão: `root`
-    - senha: `password` 
-    
+    - senha: `password`
+     
+** obs1: no momento, ainda é preciso criar a base de dados manualmente com o conteúdo do arquivo database.sql. Tem um issue aberta para implementar a funcionalidade de criar a base de dados.
+
+** obs2: no momento, ainda é preciso configura o IP do banco no arquivo src\Core\Database. Tem uma issue aberta para criar a funcionalidade de pegar as configurações de um arquivo .env.
+
 ### Frontend
 
 
