@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "512974cbbe16c7daa9f85b8734f29657",
+    "content-hash": "7f8d64c5e8c1a35ac67c7c554a737b78",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -979,16 +979,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "dev-master",
+            "version": "8.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "eeba3b8814ba48c5c6ddeb809e4e292ae4bcec97"
+                "reference": "a7af0201285445c9c73c4bdf869c486e36b41604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/eeba3b8814ba48c5c6ddeb809e4e292ae4bcec97",
-                "reference": "eeba3b8814ba48c5c6ddeb809e4e292ae4bcec97",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a7af0201285445c9c73c4bdf869c486e36b41604",
+                "reference": "a7af0201285445c9c73c4bdf869c486e36b41604",
                 "shasum": ""
             },
             "require": {
@@ -1031,7 +1031,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.1-dev"
+                    "dev-master": "8.0-dev"
                 }
             },
             "autoload": {
@@ -1057,7 +1057,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-11T10:08:41+00:00"
+            "time": "2019-02-18T09:23:05+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1783,6 +1783,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.3"
+    },
     "platform-dev": []
 }
