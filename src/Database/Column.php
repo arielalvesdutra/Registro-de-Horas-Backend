@@ -4,29 +4,44 @@ namespace App\Database;
 
 use App\Database\Enum\ColumnType\ColumnType;
 
+/**
+ * Essa classe representa uma coluna do banco de dados.
+ *
+ * Class Column
+ * @package App\Database
+ */
 class Column
 {
 
+    /**
+     * @var bool
+     */
     protected $autoIncrement = false;
 
+    /**
+     * @var string
+     */
     protected $name;
 
+    /**
+     * @var bool
+     */
     protected $notNull = false;
 
+    /**
+     * @var int
+     */
     protected $size;
 
+    /**
+     * @var ColumnType
+     */
     protected $type;
 
     public function __construct(string $name, ColumnType $type)
     {
-        $this->name = $name;
-        $this->type = $type;
-    }
-
-    public function setAutoIncrement() : Column
-    {
-        $this->autoIncrement = true;
-        return $this;
+        $this->setName($name);
+        $this->setType($type);
     }
 
     /**
@@ -45,12 +60,9 @@ class Column
         return $this->notNull;
     }
 
-    function setSize(int $size) : Column
-    {
-        $this->size = $size;
-        return $this;
-    }
-
+    /**
+     * @return Column
+     */
     public function setNotNull() : Column
     {
         $this->notNull = true;
@@ -79,6 +91,49 @@ class Column
     public function getSize()
     {
         return $this->size;
+    }
+
+    /**
+     * @return Column
+     */
+    public function setAutoIncrement() : Column
+    {
+        $this->autoIncrement = true;
+        return $this;
+    }
+
+    /**
+     * Remove espaços do nome
+     *
+     * @param string $name
+     */
+    private function setName(string $name)
+    {
+        /**
+         * @todo validar se não tem caracteres especiais
+         * @todo validar se não começa ou termina com número, hifen ou underline
+         */
+
+        $this->name = trim($name);
+    }
+
+    /**
+     * @param int $size
+     *
+     * @return Column
+     */
+    public function setSize(int $size) : Column
+    {
+        $this->size = $size;
+        return $this;
+    }
+
+    /**
+     * @param ColumnType $columnType
+     */
+    private function setType(ColumnType $columnType)
+    {
+        $this->type = $columnType;
     }
 
     public function __toString()
