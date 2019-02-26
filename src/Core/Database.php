@@ -15,7 +15,7 @@ class Database
     private $host = "192.168.11.100";
 
     /** @var string base de dados de conexão com o banco */
-    private $database = "time_records_db";
+    private $database = "time_recorder";
 
     /** @var string porta de conexão com o banco*/
     private $port = "3600";
