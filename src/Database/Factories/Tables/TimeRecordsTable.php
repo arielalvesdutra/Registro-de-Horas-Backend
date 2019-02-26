@@ -44,6 +44,10 @@ class TimeRecordsTable implements TableFactoryInterface
             ->setSize(15)
         );
 
+        $table->addColumn((new Database\Column('last_modified', new TextType()))
+            ->setSize(15)
+        );
+
         $table->addPrimaryKey($table->getColumns()['id']);
         $table->setEngine(new InnoDb());
 
