@@ -15,6 +15,11 @@ use PDOException;
 class DatabaseServerConnection
 {
     /**
+     * @var string
+     */
+    protected $databaseName;
+
+    /**
      * @var PDO
      */
     protected $pdo;
@@ -38,6 +43,8 @@ class DatabaseServerConnection
             $user,
             $password
         );
+
+        $this->databaseName = $database;
     }
 
     /**
@@ -89,6 +96,18 @@ class DatabaseServerConnection
     }
 
     /**
+     * Retorna o nome da base de dados, caso ela tenha sido setada
+     * na criação do DatabaseServerConnection ou
+     * retorna um string vazia.
+     *
+     * @return string
+     */
+    public function getDatabaseName() : string
+    {
+        return $this->databaseName;
+    }
+
+    /**
      * @return PDO
      */
     public function getPdo() : PDO
@@ -128,7 +147,7 @@ class DatabaseServerConnection
                 "port=" . $port. ";" .
                 "dbname=" . $database;
         }
-//        'mysql:host='.$object->host.';port='.$object->port.';dbname='.$object->database,
+
         return "mysql:" .
             "host=" . $host . ";" .
             "port=" . $port. ";";
