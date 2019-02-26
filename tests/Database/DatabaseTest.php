@@ -120,7 +120,7 @@ class DatabaseTest extends TestCase
         $this->assertTrue($database->hasTable($tableName));
 
         $database->dropTable($tableName);
-        $this->assertTrue($database->hasTable($tableName));
+        $this->assertFalse($database->hasTable($tableName));
     }
 
     /**
