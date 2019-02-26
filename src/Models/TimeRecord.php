@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Entities;
+use DateTime;
 
 class TimeRecord extends Model
 {
@@ -20,8 +21,11 @@ class TimeRecord extends Model
     public function save(Entities\IEntity $timeRecord)
     {
 
-        $query = $this->getPdo()->prepare("INSERT INTO " . $this->getTableName() . " (title, initDateTime, endDateTime, duration)
-                  VALUES (:title, :initDate, :endDate, :duration)");
+        $query = $this->getPdo()->prepare(
+            "INSERT INTO " . $this->getTableName()
+            . " (title, initDateTime, endDateTime, duration)
+                  VALUES (:title, :initDate, :endDate, :duration)"
+        );
 
         $query->bindParam(':title', $timeRecord->getTitle());
         $query->bindParam(':initDate', $timeRecord->getInitDateTime()->__toString());
@@ -49,13 +53,19 @@ class TimeRecord extends Model
     public function update(Entities\IEntity $timeRecord)
     {
 
-        $query = $this->getPdo()->prepare("UPDATE " . $this->getTableName() . " SET title = :title, initDateTime = :initDate, endDateTime = :endDate, duration = :duration WHERE id = :id");
+        $query = $this->getPdo()->prepare(
+            "UPDATE " . $this->getTableName() .
+            " SET title = :title, initDateTime = :initDate, endDateTime = :endDate, 
+               duration = :duration, last_modified = :lastModified 
+            WHERE id = :id"
+        );
 
         $query->bindParam(':id', $timeRecord->getId());
         $query->bindParam(':title', $timeRecord->getTitle());
         $query->bindParam(':initDate', $timeRecord->getInitDateTime()->__toString());
         $query->bindParam(':endDate', $timeRecord->getEndDateTime()->__toString());
         $query->bindParam(':duration', $timeRecord->getDuration()->__toString());
+        $query->bindParam(':lastModified', (new DateTime())->format('Y/m/d H:i:s'));
 
         $query->execute();
     }
