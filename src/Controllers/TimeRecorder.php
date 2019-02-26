@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Core;
+use App\Database\Factories\Connections\DefaultDatabaseConnection;
 use App\Models;
 use App\Repositories;
 use App\Services;
@@ -18,7 +18,7 @@ class TimeRecorder extends Controller
     public function __construct()
     {
         $this->setRepository(new Repositories\TimeRecorder(
-            new Models\TimeRecord(Core\Database::connect()),
+            new Models\TimeRecord(DefaultDatabaseConnection::connect()),
             new Services\TimeRecorderService()
         ));
     }

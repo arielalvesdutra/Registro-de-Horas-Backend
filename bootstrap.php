@@ -40,3 +40,9 @@ function debugx()
     echo '</pre>';
     die();
 }
+
+use App\Database\Factories\Databases\TimeRecorderDatabase;
+use App\Database\Factories\Tables\TimeRecordsTable;
+
+TimeRecorderDatabase::create();
+TimeRecordsTable::create();
