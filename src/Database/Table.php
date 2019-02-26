@@ -6,17 +6,43 @@ use App\Database\Enum\ColumnType\IntType;
 use App\Database\Enum\MySQLEngine\MySQLEngine;
 use Exception;
 
-
+/**
+ * @todo Documentar
+ *
+ * Class Table
+ * @package App\Database
+ */
 class Table
 {
+    /**
+     * Array de colunas
+     *
+     * @var array<Column>
+     */
     protected $columns = [];
 
+    /**
+     * @var MySQLEngine
+     */
     protected $engine;
 
+    /**
+     * Array de chaves estrangeiras
+     *
+     * @var array<int>
+     */
     protected $foreignKeys = [];
 
+    /**
+     * Array de chaves primárias
+     *
+     * @var array<int>
+     */
     protected $primaryKeys = [];
 
+    /**
+     * @var string
+     */
     protected $tableName;
 
     public function __construct(string $tableName)
@@ -24,11 +50,27 @@ class Table
         $this->tableName = $tableName;
     }
 
+    /**
+     * Adiciona coluna ao array de colunas.
+     *
+     * O nome da coluna se torna o indice no array.
+     *
+     * @param Column $column
+     */
     public function addColumn(Column $column)
     {
         $this->columns[$column->getName()] = $column;
     }
 
+    /**
+     * Adiciona coluna à chave primária
+     *
+     * A chave primária dever ser do tipo int
+     *
+     * @param Column $column
+     *
+     * @throws Exception
+     */
     public function addPrimaryKey(Column $column)
     {
         if (!$column->getType() instanceof IntType) {
@@ -38,8 +80,9 @@ class Table
         $this->primaryKeys[] = $column;
     }
 
-//    abstract public function delete();
-
+    /**
+     * @return array<Column>
+     */
     public function getColumns() : array
     {
         return $this->columns;
@@ -64,6 +107,9 @@ class Table
         return $columnsDDL;
     }
 
+    /**
+     * @return MySQLEngine
+     */
     public function getEngine(): MySQLEngine
     {
         return $this->engine;
@@ -111,16 +157,13 @@ class Table
         return $this->tableName;
     }
 
-//    abstract public function insert();
-
-//    abstract public function select();
-
+    /**
+     * @param MySQLEngine $engine
+     */
     public function setEngine(MySQLEngine $engine)
     {
         $this->engine = $engine;
     }
-
-//    abstract public function update();
 }
 
 
