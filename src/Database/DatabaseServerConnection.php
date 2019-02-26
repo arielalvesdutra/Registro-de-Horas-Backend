@@ -7,7 +7,8 @@ use PDO;
 use PDOException;
 
 /**
- * @todo documentar
+ * Essa classe representa a conexão com o servidor de banco de dados,
+ * com as operações de criar ou remover bases de dados.
  *
  * Class DatabaseServerConnection
  * @package App\Database

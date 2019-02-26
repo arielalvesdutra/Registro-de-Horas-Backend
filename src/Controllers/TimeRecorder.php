@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Database\Factories\Connections\DefaultDatabaseConnection;
 use App\Models;
 use App\Repositories;

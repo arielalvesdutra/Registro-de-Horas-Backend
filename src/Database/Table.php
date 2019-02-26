@@ -7,7 +7,9 @@ use App\Database\Enum\MySQLEngine\MySQLEngine;
 use Exception;
 
 /**
- * @todo Documentar
+ * Essa classe representa um tabela de banco de dados. Essa classe
+ * é utilizada pela classe Database para criar novas tabelas no
+ * banco de dados.
  *
  * Class Table
  * @package App\Database
