@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 /**
  * Class Model
  * @package App\Models
@@ -33,11 +35,11 @@ abstract class Model implements IModel
     /**
      * Objeto PDO para comunicação com o banco de dados
      *
-     * @var \PDO
+     * @var PDO
      */
     protected $pdo;
 
-    public function __construct(\PDO $pdo)
+    public function __construct(PDO $pdo)
     {
         $this->setPdo($pdo);
     }
@@ -69,7 +71,7 @@ abstract class Model implements IModel
         $query = $this->getPdo()->prepare("SELECT * FROM " . $this->getTableName());
         $query->execute();
 
-        return $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -91,7 +93,7 @@ abstract class Model implements IModel
 
         $query->execute();
 
-        return $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -103,9 +105,9 @@ abstract class Model implements IModel
     }
 
     /**
-     * @return \PDO
+     * @return PDO
      */
-    public function getPdo(): \PDO
+    public function getPdo(): PDO
     {
         return $this->pdo;
     }
@@ -127,9 +129,9 @@ abstract class Model implements IModel
     }
 
     /**
-     * @param \PDO $pdo
+     * @param PDO $pdo
      */
-    public function setPdo(\PDO $pdo): void
+    public function setPdo(PDO $pdo): void
     {
         $this->pdo = $pdo;
     }
