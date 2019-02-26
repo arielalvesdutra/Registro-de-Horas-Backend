@@ -25,7 +25,7 @@ class DatabaseTest extends TestCase
      *
      * @throws \Exception
      */
-    public function assertPostConditions(): void
+    public function assertPreConditions(): void
     {
         $databaseServerConnection = new DatabaseServerConnection(
             '192.168.11.100',
@@ -34,10 +34,10 @@ class DatabaseTest extends TestCase
             3600
         );
 
-        $databaseServerConnection->createDatabaseIfNotExists('time_records_db_tests');
+        $databaseServerConnection->createDatabaseIfNotExists('time_recorder_db_tests');
 
         $this->assertTrue(
-          $databaseServerConnection->hasDatabase('time_records_db_tests')
+          $databaseServerConnection->hasDatabase('time_recorder_db_tests')
         );
     }
 
@@ -121,36 +121,6 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * Testa a remoção de uma tabela.
-     *
-     * @throws \Exception
-     */
-    public function testDropTableShouldWork()
-    {
-        $database = new Database(
-            $this->createNewDatabaseServerConnectionWithDatabase()
-        );
-
-        $tableName = 'test_drop_table';
-        $table = new Table($tableName);
-
-        $idColumn = (new Column('id', new IntType()))
-            ->setSize(11)
-            ->setAutoIncrement()
-            ->setNotNull();
-
-        $table->addColumn($idColumn);
-        $table->addPrimaryKey($idColumn);
-        $table->setEngine(new InnoDb());
-
-        $database->createTable($table);
-        $this->assertTrue($database->hasTable($tableName));
-
-        $database->dropTable($tableName);
-        $this->assertFalse($database->hasTable($tableName));
-    }
-
-    /**
      * @todo Pegar dados do arquivo .env
      *
      * Retorna o objeto DatabaseServerConnection para o objeto Database.
@@ -164,7 +134,7 @@ class DatabaseTest extends TestCase
             'root',
             'password',
             3600,
-            'time_records_db_tests'
+            'time_recorder_db_tests'
         );
     }
 }
