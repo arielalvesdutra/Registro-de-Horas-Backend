@@ -8,11 +8,20 @@ use App\Database\Enum\MySQLEngine\InnoDb;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Testes unitários para a classe de conexão com o banco de dados.
+ *
+ * Class DatabaseTest
+ * @package App\Database
+ */
 class DatabaseTest extends TestCase
 {
 
     /**
      * @todo Pegar dados do arquivo .env
+     *
+     * Se conecta com o servidor de banco de dados, utiliza o comando para criar a base de dados
+     * 'time_records_db_tests' e verifica se a base foi criada.
      *
      * @throws \Exception
      */
@@ -32,6 +41,9 @@ class DatabaseTest extends TestCase
         );
     }
 
+    /**
+     * Testa a conexão com a base de dados.
+     */
     public function testConnectionWithDatabaseShouldWork()
     {
 
@@ -44,6 +56,11 @@ class DatabaseTest extends TestCase
             $database);
     }
 
+    /**
+     * Testa a criação de uma tabela com o objeto Database.
+     *
+     * @throws \Exception
+     */
     public function testCreateTableShouldWork()
     {
         $database = new Database(
@@ -71,6 +88,11 @@ class DatabaseTest extends TestCase
         $this->assertTrue($database->hasTable($tableName));
     }
 
+    /**
+     * Testa a criação de uma tabela, se ela não existir, com o objeto Database.
+     *
+     * @throws \Exception
+     */
     public function testCreateTableIfNotExistsShouldWork()
     {
         $database = new Database(
@@ -98,6 +120,11 @@ class DatabaseTest extends TestCase
         $this->assertTrue($database->hasTable($tableName));
     }
 
+    /**
+     * Testa a remoção de uma tabela.
+     *
+     * @throws \Exception
+     */
     public function testDropTableShouldWork()
     {
         $database = new Database(
@@ -125,6 +152,8 @@ class DatabaseTest extends TestCase
 
     /**
      * @todo Pegar dados do arquivo .env
+     *
+     * Retorna o objeto DatabaseServerConnection para o objeto Database.
      *
      * @return DatabaseServerConnection
      */
