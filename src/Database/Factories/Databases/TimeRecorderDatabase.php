@@ -4,7 +4,7 @@ namespace App\Database\Factories\Databases;
 
 use App\Database;
 
-class TimeRecorderDatabase implements FactoryDatabaseInterface
+class TimeRecorderDatabase implements DatabaseFactoryInterface
 {
     public static function create()
     {
