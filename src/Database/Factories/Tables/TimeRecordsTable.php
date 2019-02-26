@@ -7,7 +7,7 @@ use App\Database\Enum\ColumnType\IntType;
 use App\Database\Enum\ColumnType\TextType;
 use App\Database\Enum\MySQLEngine\InnoDb;
 
-class TimeRecordsTable
+class TimeRecordsTable implements TableFactoryInterface
 {
     public static function create()
     {
