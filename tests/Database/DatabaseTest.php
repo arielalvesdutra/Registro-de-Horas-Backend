@@ -28,7 +28,7 @@ class DatabaseTest extends TestCase
     public function assertPreConditions(): void
     {
         $databaseServerConnection = new DatabaseServerConnection(
-            '192.168.11.100',
+            '192.168.11.102',
             'root',
             'password',
             3600
@@ -130,7 +130,7 @@ class DatabaseTest extends TestCase
     private function createNewDatabaseServerConnectionWithDatabase() : DatabaseServerConnection
     {
         return new DatabaseServerConnection(
-            '192.168.11.100',
+            '192.168.11.102',
             'root',
             'password',
             3600,

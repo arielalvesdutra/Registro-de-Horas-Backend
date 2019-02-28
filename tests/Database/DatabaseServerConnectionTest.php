@@ -13,7 +13,7 @@ class DatabaseServerConnectionTest extends TestCase
     public function testConnectWithDatabaseServerShouldWork()
     {
       $databaseServerConnection = new DatabaseServerConnection(
-          '192.168.11.100',
+          '192.168.11.102',
           'root',
           'password',
           3600
@@ -31,7 +31,7 @@ class DatabaseServerConnectionTest extends TestCase
     {
 
         $databaseServerConnection = new DatabaseServerConnection(
-            '192.168.11.100',
+            '192.168.11.102',
             'root',
             'password',
             3600
@@ -53,7 +53,7 @@ class DatabaseServerConnectionTest extends TestCase
     {
 
         $databaseServerConnection = new DatabaseServerConnection(
-            '192.168.11.100',
+            '192.168.11.102',
             'root',
             'password',
             3600
