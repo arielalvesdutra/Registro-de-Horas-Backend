@@ -230,7 +230,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      */
     private function formatDate(string $date): string
     {
-        return date_format(new \DateTime($date), 'Y/m/d');
+        return date_format(new \DateTime($date), 'Y-m-d');
     }
 
     /**
