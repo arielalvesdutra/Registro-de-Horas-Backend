@@ -14,7 +14,7 @@ class TimeRecordsTable implements TableFactoryInterface
 
         $database = new Database\Database(
             new Database\DatabaseServerConnection(
-                '192.168.11.100',
+                '192.168.11.102',
                 'root',
                 'password',
                 '3600',
@@ -41,6 +41,10 @@ class TimeRecordsTable implements TableFactoryInterface
             ->setSize(20)
         );
         $table->addColumn((new Database\Column('duration', new TextType()))
+            ->setSize(15)
+        );
+
+        $table->addColumn((new Database\Column('last_modified', new TextType()))
             ->setSize(15)
         );
 

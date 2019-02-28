@@ -39,7 +39,7 @@ class TimeRecorder extends Controller
 
             return $response->withStatus(200);
         } catch (\Exception $exception) {
-            return $response->withStatus(400);
+            return $response->withJson($exception->getMessage(), 400);
         }
     }
 
@@ -59,7 +59,7 @@ class TimeRecorder extends Controller
 
             return $response->withStatus(200);
         } catch (\Exception $exception) {
-            return $response->withStatus(400);
+            return $response->withJson($exception->getMessage(), 400);
         }
     }
 
@@ -79,7 +79,7 @@ class TimeRecorder extends Controller
 
             return $response->withJson($records);
         } catch (\Exception $exception) {
-            return $response->withStatus(400);
+            return $response->withJson($exception->getMessage(), 400);
         }
     }
 
@@ -99,7 +99,7 @@ class TimeRecorder extends Controller
 
             return $response->withStatus(200);
         } catch (\Exception $exception) {
-            return $response->withStatus(400);
+            return $response->withJson($exception->getMessage(), 400);
         }
     }
 }

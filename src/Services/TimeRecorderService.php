@@ -16,8 +16,8 @@ class TimeRecorderService extends Service implements ITimeRecorderService
 
     const HOUR_REGULAR_EXPRESSION = "/([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})/";
 
-    const DATE_AND_HOUR_REGULAR_EXPRESSION =
-        '/([0-9]{4})([-,\/])([0-9]{2})([-,\/])([0-9]{2}) ([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})/';
+    const DATE_AND_TIME_REGULAR_EXPRESSION =
+        '/^([0-9]{4})([-])([0-9]{2})([-])([0-9]{2}) ([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})([-,+]{0,1})([0-9]{4})*$/';
 
     /**
      * @param Entities\TimeRecord $timeRecord
@@ -230,7 +230,7 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      */
     private function formatDate(string $date): string
     {
-        return date_format(new \DateTime($date), 'Y/m/d');
+        return date_format(new \DateTime($date), 'Y-m-d');
     }
 
     /**
@@ -310,8 +310,8 @@ class TimeRecorderService extends Service implements ITimeRecorderService
      */
     private function validateDateTimeExpression(string $date)
     {
-        if (!preg_match(self::DATE_AND_HOUR_REGULAR_EXPRESSION, $date)) {
-            throw new \Exception('Formato de data inválido!');
+        if (!preg_match(self::DATE_AND_TIME_REGULAR_EXPRESSION, $date)) {
+            throw new \Exception('Formato de data inválido! ' . $date);
         }
     }
 }

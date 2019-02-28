@@ -17,10 +17,10 @@ class TimeRecordTest extends TestCase
 
     const DATE_REGULAR_EXPRESSION = "/([0-9]{4})([\/])([0-9]{2})([\/])([0-9]{2})/";
 
-    const DATE_AND_HOUR_REGULAR_EXPRESSION =
-        '/([0-9]{4})([\/])([0-9]{2})([\/])([0-9]{2}) ([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})/';
+    const TIME_REGULAR_EXPRESSION = "/^([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})$/";
 
-    const HOUR_REGULAR_EXPRESSION = "/([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})/";
+    const DATE_AND_TIME_REGULAR_EXPRESSION =
+        '/^([0-9]{4})([-])([0-9]{2})([-])([0-9]{2}) ([0-9]{2})([:])([0-9]{2})([:])([0-9]{2}) ([A-Z]{3})([-,+]{0,1})([0-9]{4})*$/';
 
     public function assertPreConditions(): void
     {
@@ -48,20 +48,20 @@ class TimeRecordTest extends TestCase
 
     public function testGetEndDateTimeShouldWork()
     {
-        $endDateTime = new DateTimeDecorator("2019-01-01 10:00:00");
+        $endDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
         $timeRecord = new TimeRecord();
         $timeRecord->setEndDateTime($endDateTime);
 
         $this->assertEquals($endDateTime, $timeRecord->getEndDateTime());
         $this->assertRegExp(
-            self::DATE_AND_HOUR_REGULAR_EXPRESSION,
+            self::DATE_AND_TIME_REGULAR_EXPRESSION,
             $timeRecord->getEndDateTime()->__toString()
         );
     }
 
     public function testSetEndDateTimeShouldWork()
     {
-        $entDateTime = new DateTimeDecorator("2019/01/01 10:00:00");
+        $entDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
         $timeRecord = new TimeRecord();
         $timeRecord->setEndDateTime($entDateTime);
     }
@@ -82,20 +82,20 @@ class TimeRecordTest extends TestCase
 
     public function testGetInitDateTimeShouldWork()
     {
-        $initDateTime = new DateTimeDecorator("2019-01-01 10:00:00");
+        $initDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
         $timeRecord = new TimeRecord();
         $timeRecord->setInitDateTime($initDateTime);
 
         $this->assertEquals($initDateTime, $timeRecord->getInitDateTime());
         $this->assertRegExp(
-            self::DATE_AND_HOUR_REGULAR_EXPRESSION,
+            self::DATE_AND_TIME_REGULAR_EXPRESSION,
             $timeRecord->getInitDateTime()->__toString()
         );
     }
 
     public function testSetInitDateTimeShouldWork()
     {
-        $initDateTime = new DateTimeDecorator("2019/01/01 10:00:00");
+        $initDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
         $timeRecord = new TimeRecord();
         $timeRecord->setInitDateTime($initDateTime);
     }
@@ -125,7 +125,7 @@ class TimeRecordTest extends TestCase
         $timeRecord->setDuration($duration);
         $this->assertEquals($duration, $timeRecord->getDuration());
         $this->assertRegExp(
-            self::HOUR_REGULAR_EXPRESSION,
+            self::TIME_REGULAR_EXPRESSION,
             $timeRecord->getDuration()->__toString()
         );
     }
@@ -134,8 +134,8 @@ class TimeRecordTest extends TestCase
     {
         $id = 1;
         $title = "Registro de tempo";
-        $initDateTime = new DateTimeDecorator("2019/01/01 10:00:00");
-        $endDateTime = new DateTimeDecorator("2019/01/01 12:00:00");
+        $initDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
+        $endDateTime = new DateTimeDecorator("2019-01-01 10:00:00-0300");
         $duration = new Duration("2", "00", "00");
 
         $record = new TimeRecord(['id' => $id]);

@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class DurationTest extends TestCase
 {
-    const HOUR_REGULAR_EXPRESSION = "/([0-9]{2})([:])([0-9]{2})([:])([0-9]{2})/";
+    const TIME_REGULAR_EXPRESSION = "/^([0-9]{2,})([:])([0-9]{2})([:])([0-9]{2})$/";
 
     public function testSetDurationWithInvalidHoursDataShouldThrowAnException()
     {
@@ -57,7 +57,7 @@ class DurationTest extends TestCase
 
         $duration = new Duration($hours, $minutes, $seconds);
         $this->assertRegExp(
-          self::HOUR_REGULAR_EXPRESSION,
+          self::TIME_REGULAR_EXPRESSION,
           $duration->__toString()
         );
     }

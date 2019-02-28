@@ -26,8 +26,8 @@ class TimeRecordTest extends TestCase
 
         $parameters = [
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 12:00:00",
-            "endDateTime" => "2019/01/01 10:00:00"
+            "initDateTime" => "2019-01-01 12:00:00-0300",
+            "endDateTime" => "2019-01-01 10:00:00-0300"
         ];
 
         TimeRecord::create($parameters);
@@ -40,8 +40,8 @@ class TimeRecordTest extends TestCase
     {
         $parameters = [
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 10:00:00",
-            "endDateTime" =>  "2019/01/01 12:00:00"
+            "initDateTime" => "2019-01-01 10:00:00-0300",
+            "endDateTime" =>  "2019-01-01 12:00:00-0300"
         ];
 
         $timeRecord = TimeRecord::create($parameters);
@@ -57,8 +57,8 @@ class TimeRecordTest extends TestCase
         $parameters = [
             "id" => 1,
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 10:00:00",
-            "endDateTime" =>  "2019/01/01 12:00:00"
+            "initDateTime" => "2019-01-01 10:00:00-0300",
+            "endDateTime" =>  "2019-01-01 12:00:00-0300"
         ];
 
         $timeRecord = TimeRecord::create($parameters);
@@ -74,8 +74,8 @@ class TimeRecordTest extends TestCase
         $parameters = [
             "id" => 1,
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 10:00:00",
-            "endDateTime" =>  "2019/01/01 12:00:00",
+            "initDateTime" => "2019-01-01 10:00:00-0300",
+            "endDateTime" =>  "2019-01-01 12:00:00-0300",
             "duration" => [
                 "hours" => '2',
                 "minutes" => '15',
@@ -96,7 +96,7 @@ class TimeRecordTest extends TestCase
         $this->expectException(\Exception::class);
         $parameters = [
             "title" => "Registro de tempo",
-            "endDateTime" =>  "2019/01/01 12:00:00"
+            "endDateTime" =>  "2019-01-01 12:00:00-0300"
         ];
 
         TimeRecord::create($parameters);
@@ -110,7 +110,7 @@ class TimeRecordTest extends TestCase
         $this->expectException(\Exception::class);
         $parameters = [
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 10:00:00"
+            "initDateTime" => "2019-01-01 10:00:00-0300"
         ];
 
         TimeRecord::create($parameters);
@@ -123,8 +123,8 @@ class TimeRecordTest extends TestCase
     {
         $this->expectException(\Exception::class);
         $parameters = [
-            "initDateTime" => "2019/01/01 10:00:00",
-            "endDateTime" =>  "2019/01/01 12:00:00"
+            "initDateTime" => "2019-01-01 10:00:00-0300",
+            "endDateTime" =>  "2019-01-01 12:00:00-0300"
         ];
 
         TimeRecord::create($parameters);
@@ -135,8 +135,8 @@ class TimeRecordTest extends TestCase
         $parameters = [
             "id" => 1,
             "title" => "Registro de tempo",
-            "initDateTime" => "2019/01/01 10:00:00",
-            "endDateTime" =>  "2019/01/01 12:00:00",
+            "initDateTime" => "2019-01-01 10:00:00-0300",
+            "endDateTime" =>  "2019-01-01 12:00:00-0300",
             "duration" => ''
         ];
 
