@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Decorators\DateTimeDecorator;
 use App\Entities;
-use DateTime;
 
 class TimeRecord extends Model
 {
