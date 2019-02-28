@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Decorators\DateTimeDecorator;
 use App\Entities;
 use DateTime;
 
@@ -65,7 +66,7 @@ class TimeRecord extends Model
         $query->bindParam(':initDate', $timeRecord->getInitDateTime()->__toString());
         $query->bindParam(':endDate', $timeRecord->getEndDateTime()->__toString());
         $query->bindParam(':duration', $timeRecord->getDuration()->__toString());
-        $query->bindParam(':lastModified', (new DateTime())->format('Y/m/d H:i:s'));
+        $query->bindParam(':lastModified', (new DateTimeDecorator())->__toString());
 
         $query->execute();
     }
