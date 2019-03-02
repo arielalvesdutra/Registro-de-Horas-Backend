@@ -4,7 +4,7 @@ namespace App\Database\Factories\Tables;
 
 use App\Database;
 use App\Database\Enum\ColumnType\IntType;
-use App\Database\Enum\ColumnType\TextType;
+use App\Database\Enum\ColumnType\VarcharType;
 use App\Database\Enum\MySQLEngine\InnoDb;
 
 class TimeRecordsTable implements TableFactoryInterface
@@ -30,21 +30,21 @@ class TimeRecordsTable implements TableFactoryInterface
             ->setAutoIncrement()
             ->setSize(12)
         );
-        $table->addColumn((new Database\Column('title', new TextType()))
+        $table->addColumn((new Database\Column('title', new VarcharType()))
             ->setNotNull()
             ->setSize(50)
         );
-        $table->addColumn((new Database\Column('initDateTime', new TextType()))
+        $table->addColumn((new Database\Column('initDateTime', new VarcharType()))
             ->setSize(20)
         );
-        $table->addColumn((new Database\Column('endDateTime', new TextType()))
+        $table->addColumn((new Database\Column('endDateTime', new VarcharType()))
             ->setSize(20)
         );
-        $table->addColumn((new Database\Column('duration', new TextType()))
+        $table->addColumn((new Database\Column('duration', new VarcharType()))
             ->setSize(15)
         );
 
-        $table->addColumn((new Database\Column('last_modified', new TextType()))
+        $table->addColumn((new Database\Column('last_modified', new VarcharType()))
             ->setSize(15)
         );
 
