@@ -3,6 +3,8 @@
 namespace App\Database;
 
 use App\Database\Enum\ColumnType\ColumnType;
+use App\Database\Enum\ColumnType\TextType;
+use Exception;
 
 /**
  * Essa classe representa uma coluna do banco de dados.
@@ -121,9 +123,15 @@ class Column
      * @param int $size
      *
      * @return Column
+     *
+     * @throws Exception
      */
     public function setSize(int $size) : Column
     {
+        if ($this->getType() instanceof TextType) {
+            throw new Exception('Não é possível setar o tamanho com o tipo Texto.');
+        }
+
         $this->size = $size;
         return $this;
     }
