@@ -35,17 +35,17 @@ class TimeRecordsTable implements TableFactoryInterface
             ->setSize(50)
         );
         $table->addColumn((new Database\Column('initDateTime', new VarcharType()))
-            ->setSize(20)
+            ->setSize(30)
         );
         $table->addColumn((new Database\Column('endDateTime', new VarcharType()))
-            ->setSize(20)
+            ->setSize(30)
         );
         $table->addColumn((new Database\Column('duration', new VarcharType()))
-            ->setSize(15)
+            ->setSize(16)
         );
 
         $table->addColumn((new Database\Column('last_modified', new VarcharType()))
-            ->setSize(15)
+            ->setSize(30)
         );
 
         $table->addPrimaryKey($table->getColumns()['id']);
