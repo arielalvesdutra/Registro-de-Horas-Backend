@@ -4,6 +4,7 @@ namespace App\Database;
 
 use App\Database\Enum\ColumnType\IntType;
 use App\Database\Enum\ColumnType\TextType;
+use App\Database\Enum\ColumnType\VarcharType;
 use App\Database\Enum\MySQLEngine\InnoDb;
 use PDO;
 use PHPUnit\Framework\TestCase;
@@ -75,11 +76,13 @@ class DatabaseTest extends TestCase
             ->setSize(11)
             ->setAutoIncrement()
             ->setNotNull();
-        $titleColumn = (new Column('title', new TextType()))
+        $titleColumn = (new Column('title', new VarcharType()))
             ->setSize(35);
+        $descriptionColumn = (new Column('decricao', new TextType()));
 
         $table->addColumn($idColumn);
         $table->addColumn($titleColumn);
+        $table->addColumn($descriptionColumn);
         $table->addPrimaryKey($idColumn);
         $table->setEngine(new InnoDb());
 
@@ -107,11 +110,13 @@ class DatabaseTest extends TestCase
             ->setSize(11)
             ->setAutoIncrement()
             ->setNotNull();
-        $titleColumn = (new Column('title', new TextType()))
+        $titleColumn = (new Column('title', new VarcharType()))
             ->setSize(35);
+        $descriptionColumn = (new Column('decricao', new TextType()));
 
         $table->addColumn($idColumn);
         $table->addColumn($titleColumn);
+        $table->addColumn($descriptionColumn);
         $table->addPrimaryKey($idColumn);
         $table->setEngine(new InnoDb());
 
