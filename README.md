@@ -74,7 +74,7 @@ Informações do ambiente docker:
     - usuario padrão: `root`
     - senha: `password`
      
-** obs1: no momento, ainda é preciso configura o IP do banco no arquivo src\Core\Database. Tem uma issue aberta para criar a funcionalidade de pegar as configurações de um arquivo .env.
+** obs1: no momento, ainda é preciso configura o IP do banco no arquivo src\Database\Factories\Connections\DefaultDatabaseConnection. Tem uma issue aberta para criar a funcionalidade de pegar as configurações de um arquivo .env.
 
 ### Frontend
 
