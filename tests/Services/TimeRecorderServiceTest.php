@@ -94,7 +94,7 @@ class TimeRecorderServiceTest extends TestCase
 
     /**
      * Testa o cálculo da duração de tempo com parametro inválido e
-     * deve gerar um throwable.
+     * deve lançar um throwable.
      *
      * Método testado: calculateTimeDuration()
      *
