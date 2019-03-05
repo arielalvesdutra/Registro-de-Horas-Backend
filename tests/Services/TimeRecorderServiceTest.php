@@ -7,6 +7,12 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
+/**
+ * Testes Unitários do App\Services\TimeRecorderService
+ *
+ * Class TimeRecorderServiceTest
+ * @package App\Services
+ */
 class TimeRecorderServiceTest extends TestCase
 {
 
